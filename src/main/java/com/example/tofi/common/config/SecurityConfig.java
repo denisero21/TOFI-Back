@@ -78,7 +78,7 @@ public class SecurityConfig {
                                                 "/service/payment_page")
                                         .permitAll()
 
-                                        .requestMatchers("/api/auth/login", "/api/auth/logout","api/auth/register")
+                                        .requestMatchers("/api/auth/login", "/api/auth/logout","api/auth/register","api/**")
                                         .permitAll()
 
                                         // TODO: 13.09.2023 for halik bank payment page
