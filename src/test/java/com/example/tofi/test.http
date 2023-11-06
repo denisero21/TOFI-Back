@@ -1,0 +1,11 @@
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "full_name": "John Doe",
+  "email": "user@user.com",
+  "phone_number": "123-456-7890",
+  "is_blocked": false,
+  "two_factor_auth": false,
+  "password": "user"
+}
