@@ -198,6 +198,7 @@
     </dependencies>
 
     <build>
+        <finalName>tofi</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -213,5 +214,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
