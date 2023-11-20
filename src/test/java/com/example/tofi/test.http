@@ -1,11 +1,20 @@
-POST https://tofi.onrender.com/api/auth/register
+POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
   "full_name": "Johnhhhh Doe",
-  "email": "user2@user.com",
+  "email": "user5@user.com",
   "phone_number": "123-456-7890",
   "is_blocked": false,
   "two_factor_auth": false,
   "password": "user"
+}
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+"login": "user5@user.com",
+"password": "user"
 }

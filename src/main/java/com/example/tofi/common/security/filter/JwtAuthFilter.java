@@ -1,7 +1,7 @@
 package com.example.tofi.common.security.filter;
 
 import com.example.tofi.common.constant.Constant;
-import com.example.tofi.common.persistance.domain.user.User;
+import com.example.tofi.common.persistance.domain.userservice.User;
 import com.example.tofi.common.security.JwtProvider;
 import com.example.tofi.common.service.UserDetailsServiceHttpImpl;
 import com.example.tofi.common.service.UserDetailsServiceImpl;

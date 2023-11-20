@@ -1,7 +1,7 @@
 package com.example.tofi.common.service;
 
 
-import com.example.tofi.common.persistance.domain.user.User;
+import com.example.tofi.common.persistance.domain.userservice.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;

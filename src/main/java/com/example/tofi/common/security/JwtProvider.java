@@ -1,6 +1,6 @@
 package com.example.tofi.common.security;
 
-import com.example.tofi.common.persistance.domain.auth.Jwt;
+import com.example.tofi.common.persistance.domain.authservice.Jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

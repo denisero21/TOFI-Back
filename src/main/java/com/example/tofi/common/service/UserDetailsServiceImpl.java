@@ -1,6 +1,6 @@
 package com.example.tofi.common.service;
 
-import com.example.tofi.common.persistance.domain.user.User;
+import com.example.tofi.common.persistance.domain.userservice.User;
 import com.example.tofi.common.persistance.repository.UserRepository;
 import com.example.tofi.common.util.MessageUtil;
 import lombok.RequiredArgsConstructor;

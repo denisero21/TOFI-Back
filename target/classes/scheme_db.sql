@@ -63,4 +63,17 @@ CREATE TABLE locked
     attempt     INTEGER,
     lock_time   TIMESTAMP
 );
+CREATE TABLE user_verification_token
+(
+    id         BIGSERIAL PRIMARY KEY,
+    token      VARCHAR(500) NOT NULL,
+    expire_at  TIMESTAMP    NOT NULL,
+    user_id    BIGSERIAL    NOT NULL,
+    token_type VARCHAR(255),
+    valid      BOOL
+);
+
+ALTER TABLE user_verification_token
+    ADD CONSTRAINT qp_user_verification_token_user_id FOREIGN KEY (user_id) REFERENCES user_ (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
 

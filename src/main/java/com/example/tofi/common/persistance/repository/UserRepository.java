@@ -1,7 +1,7 @@
 package com.example.tofi.common.persistance.repository;
 
-import com.example.tofi.common.persistance.domain.user.Role;
-import com.example.tofi.common.persistance.domain.user.User;
+import com.example.tofi.common.persistance.domain.userservice.Role;
+import com.example.tofi.common.persistance.domain.userservice.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

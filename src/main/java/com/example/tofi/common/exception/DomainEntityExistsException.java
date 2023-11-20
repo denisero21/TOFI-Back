@@ -1,7 +1,7 @@
 package com.example.tofi.common.exception;
 
 
-import com.example.tofi.common.persistance.domain.user.ErrorCode;
+import com.example.tofi.common.persistance.domain.userservice.dto.ErrorCode;
 
 public class DomainEntityExistsException extends RuntimeException {
     private final ErrorCode errorCode;

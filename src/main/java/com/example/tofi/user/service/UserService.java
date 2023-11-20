@@ -1,10 +1,10 @@
 package com.example.tofi.user.service;
 
 import com.example.tofi.common.exception.DomainEntityExistsException;
-import com.example.tofi.common.persistance.domain.user.ErrorCode;
-import com.example.tofi.common.persistance.domain.user.RegisterUserRequest;
-import com.example.tofi.common.persistance.domain.user.Role;
-import com.example.tofi.common.persistance.domain.user.User;
+import com.example.tofi.common.persistance.domain.userservice.RegisterUserRequest;
+import com.example.tofi.common.persistance.domain.userservice.Role;
+import com.example.tofi.common.persistance.domain.userservice.User;
+import com.example.tofi.common.persistance.domain.userservice.dto.ErrorCode;
 import com.example.tofi.common.persistance.repository.RoleRepository;
 import com.example.tofi.common.persistance.repository.UserRepository;
 import com.example.tofi.common.util.MessageUtil;

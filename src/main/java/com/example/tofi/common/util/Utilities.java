@@ -1,7 +1,7 @@
 package com.example.tofi.common.util;
 
 import com.example.tofi.common.exception.ErrorInfo;
-import com.example.tofi.common.persistance.domain.user.User;
+import com.example.tofi.common.persistance.domain.userservice.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.experimental.UtilityClass;
