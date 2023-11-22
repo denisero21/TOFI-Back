@@ -76,4 +76,46 @@ CREATE TABLE user_verification_token
 ALTER TABLE user_verification_token
     ADD CONSTRAINT qp_user_verification_token_user_id FOREIGN KEY (user_id) REFERENCES user_ (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
+CREATE TABLE account
+(
+    id         BIGSERIAL PRIMARY KEY,
+    account_id SERIAL                  NOT NULL,
+    date       TIMESTAMP      default now() NOT NULL,
+    user_id    BIGSERIAL                    NOT NULL,
+    balance    DECIMAL(15, 2) DEFAULT 0.0   NOT NULL,
+    currency   VARCHAR(3) NOT NULL ,
+    is_blocked BOOLEAN,
+    FOREIGN KEY (user_id) REFERENCES user_ (id)
+);
+
+CREATE TABLE credit
+(
+    id                       BIGSERIAL PRIMARY KEY,
+    credit_id                SERIAL            NOT NULL,
+    date                     TIMESTAMP default now() NOT NULL,
+    user_id                  BIGSERIAL               NOT NULL,
+    account_id               BIGSERIAL               NOT NULL,
+    term                     INT                     NOT NULL,
+    amount_given             DECIMAL(15, 2)          NOT NULL,
+    available_for_pay_amount DECIMAL(15, 2)       ,
+    status                   SMALLINT,
+    FOREIGN KEY (user_id) REFERENCES user_ (id),
+    FOREIGN KEY (account_id) REFERENCES account (id)
+);
+
+CREATE TABLE deposit
+(
+    id                       BIGSERIAL PRIMARY KEY,
+    deposit_id               SERIAL             NOT NULL,
+    date                     TIMESTAMP default now() NOT NULL,
+    user_id                  BIGSERIAL               NOT NULL,
+    account_id               BIGSERIAL               NOT NULL,
+    term                     INT                     NOT NULL,
+    amount                   DECIMAL(15, 2)          NOT NULL,
+    status                   SMALLINT,
+    FOREIGN KEY (user_id) REFERENCES user_ (id),
+    FOREIGN KEY (account_id) REFERENCES account (id)
+);
+
+
 
