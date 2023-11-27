@@ -20,7 +20,6 @@ public class AccountService {
     public void createAccount(Long userId, CreateAccountDto createAccountDto){
         Account account = new Account();
         account.setName(createAccountDto.getName());
-        account.setAccountId(countService.getId());
         account.setCurrency(createAccountDto.getCurrency());
         account.setDate(LocalDateTime.now());
         account.setBalance(0.0);

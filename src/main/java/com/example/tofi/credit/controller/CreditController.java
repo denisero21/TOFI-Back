@@ -46,5 +46,16 @@ public class CreditController {
             @PathVariable("user_id") Long userId) {
         return creditService.getUsersCredits(userId);
     }
-    // TODO: 22.11.2023 Запрос на блокировку
+
+    @GetMapping(
+            value = "api/users/{user_id}/credit/{credit_id}/pay",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Pay for the credit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "all good"),
+    })
+    public void payCredit(
+            @PathVariable("credit_id") Long id) {
+         creditService.makePaymentForCredit(id);
+    }
 }

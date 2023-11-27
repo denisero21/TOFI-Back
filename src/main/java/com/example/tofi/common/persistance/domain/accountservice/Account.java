@@ -20,9 +20,6 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Account extends AbstractPersistentObject {
 
-    @Column(name = "account_id")
-    String accountId;
-
     @Column(name = "name")
     String name;
 

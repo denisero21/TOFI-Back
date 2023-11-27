@@ -18,8 +18,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Credit extends AbstractPersistentObject {
-    @Column(name = "credit_id")
-    Long creditId;
 
     @Column(name = "date")
     LocalDateTime date;

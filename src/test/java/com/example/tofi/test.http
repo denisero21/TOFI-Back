@@ -27,3 +27,15 @@ Content-Type: application/json
   "currency": "USD",
   "name": "Account 3"
 }
+
+###
+POST http://localhost:8080/api/users/4/credit
+Content-Type: application/json
+
+{
+  "account_id": 3,
+  "term": "MONTH_3",
+  "payment_type": "MANUAL",
+  "amount_given": 5000.0,
+  "is_notification_enabled": false
+}
