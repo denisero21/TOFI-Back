@@ -3,13 +3,29 @@ package com.example.tofi.common.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 @RequiredArgsConstructor
 public class CountService {
+
+    public String getId() {
+        Random random = new Random();
+        int[] digits = new int[20];
+        for (int i = 0; i < 20; i++) {
+            digits[i] = random.nextInt(10);
+        }
+        StringBuilder cardNumber = new StringBuilder(String.join("", Integer.toString(digits[0])));
+        for (int i = 1; i < 20; i++) {
+            cardNumber.append(digits[i]);
+        }
+       return cardNumber.toString();
+    }
+
     public Double countPerMonthPaySum(Double sum,Integer months, Double percent ){
         // Пример параметров кредита
         double loanAmount = sum; // Сумма кредита
-        double annualInterestRate = percent / 100; // Годовая процентная ставка (5%)
+        double annualInterestRate = percent ; // Годовая процентная ставка (5%)
         int loanTermInMonths = months; // Срок кредита в месяцах
 
         // Расчет ежемесячного платежа

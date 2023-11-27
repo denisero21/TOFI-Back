@@ -4,15 +4,15 @@ import lombok.Getter;
 
 @Getter
 public enum CreditTerm {
-    MONTH_3(0,3, 10),
-    MONTH_6(1,6,10),
-    MONTH_12(2,12,10);
+    MONTH_3(0,3, 0.1),
+    MONTH_6(1,6,0.1),
+    MONTH_12(2,12,0.1);
 
     private final int code;
     private final int term;
-    private final int percent;
+    private final double percent;
 
-    CreditTerm(int value,int term,int percent) {
+    CreditTerm(int value,int term,double percent) {
         this.code = value;
         this.term = term;
         this.percent = percent;

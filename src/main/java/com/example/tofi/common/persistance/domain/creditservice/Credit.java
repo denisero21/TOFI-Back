@@ -42,6 +42,9 @@ public class Credit extends AbstractPersistentObject {
     @Column(name = "next_pay_date")
     LocalDateTime nextPayDate;
 
+    @Column(name = "per_month_pay_sum")
+    Double perMonthPaySum;
+
     @Column(name = "status")
     CreditStatus status;
 

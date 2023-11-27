@@ -47,5 +47,19 @@ public class AccountController {
             @PathVariable("user_id") Long userId) {
         return accountService.getUsersAccounts(userId);
     }
+
+    @GetMapping(
+            value = "api/users/{user_id}/accounts/{account_id}/tuda_syuda_millioner",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Temki zhestkie")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Kalyan pokuren"),
+    })
+    public void addMoney(
+            @PathVariable("account_id") Long id) {
+        accountService.tudaSyudaMillioner(id);
+    }
+
+
     // TODO: 22.11.2023 Запрос на блокировку
 }

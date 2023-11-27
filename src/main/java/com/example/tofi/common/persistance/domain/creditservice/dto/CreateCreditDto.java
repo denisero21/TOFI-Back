@@ -1,15 +1,11 @@
 package com.example.tofi.common.persistance.domain.creditservice.dto;
 
-import com.example.tofi.common.persistance.domain.creditservice.CreditStatus;
 import com.example.tofi.common.persistance.domain.creditservice.CreditTerm;
 import com.example.tofi.common.persistance.domain.creditservice.PaymentType;
-import jakarta.persistence.Column;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor

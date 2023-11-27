@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class Account extends AbstractPersistentObject {
 
     @Column(name = "account_id")
-    Long accountId;
+    String accountId;
 
     @Column(name = "name")
     String name;

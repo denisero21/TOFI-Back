@@ -2,6 +2,8 @@ package com.example.tofi.credit.controller;
 
 import com.example.tofi.common.persistance.domain.accountservice.Account;
 import com.example.tofi.common.persistance.domain.accountservice.dto.CreateAccountDto;
+import com.example.tofi.common.persistance.domain.creditservice.Credit;
+import com.example.tofi.common.persistance.domain.creditservice.dto.CreateCreditDto;
 import com.example.tofi.credit.service.CreditService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,30 +21,30 @@ import java.util.List;
 public class CreditController {
     private final CreditService creditService;
 
-//    @PostMapping(
-//            value = "api/users/{user_id}/credit",
-//            consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @Operation(summary = "Create account")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "201", description = "Account created"),
-//    })
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void createCredit(
-//            @Valid @RequestBody CreateAccountDto accountDto,
-//            @PathVariable("user_id") Long userId) {
-//        creditService.createAccount(userId,accountDto);
-//    }
+    @PostMapping(
+            value = "api/users/{user_id}/credit",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Create account")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Account created"),
+    })
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createCredit(
+            @Valid @RequestBody CreateCreditDto createCreditDto,
+            @PathVariable("user_id") Long userId) {
+        creditService.createCredit(userId,createCreditDto);
+    }
 
     @GetMapping(
             value = "api/users/{user_id}/credit",
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Create credit")
+    @Operation(summary = "Get list of credits")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns list of credits"),
     })
-    public List<Account> createCredit(
+    public List<Credit> createCredit(
             @PathVariable("user_id") Long userId) {
-        return creditService.getUsersAccounts(userId);
+        return creditService.getUsersCredits(userId);
     }
     // TODO: 22.11.2023 Запрос на блокировку
 }

@@ -18,3 +18,12 @@ Content-Type: application/json
 "login": "user5@user.com",
 "password": "user"
 }
+
+###
+POST http://localhost:8080/api/users/4/accounts
+Content-Type: application/json
+
+{
+  "currency": "USD",
+  "name": "Account 3"
+}

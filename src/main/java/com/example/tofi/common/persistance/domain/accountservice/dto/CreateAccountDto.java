@@ -9,5 +9,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateAccountDto {
+
+    String name;
+
     String currency;
 }
