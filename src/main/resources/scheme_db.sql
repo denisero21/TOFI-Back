@@ -79,7 +79,6 @@ ALTER TABLE user_verification_token
 CREATE TABLE account
 (
     id         BIGSERIAL PRIMARY KEY,
-    account_id SERIAL                  NOT NULL,
     date       TIMESTAMP      default now() NOT NULL,
     user_id    BIGSERIAL                    NOT NULL,
     balance    DECIMAL(15, 2) DEFAULT 0.0   NOT NULL,
@@ -90,15 +89,18 @@ CREATE TABLE account
 
 CREATE TABLE credit
 (
-    id                       BIGSERIAL PRIMARY KEY,
-    credit_id                SERIAL            NOT NULL,
-    date                     TIMESTAMP default now() NOT NULL,
-    user_id                  BIGSERIAL               NOT NULL,
-    account_id               BIGSERIAL               NOT NULL,
-    term                     INT                     NOT NULL,
-    amount_given             DECIMAL(15, 2)          NOT NULL,
-    available_for_pay_amount DECIMAL(15, 2)       ,
-    status                   SMALLINT,
+    id                      BIGSERIAL PRIMARY KEY,
+    date                    TIMESTAMP default now() NOT NULL,
+    user_id                 BIGSERIAL               NOT NULL,
+    account_id              BIGSERIAL               NOT NULL,
+    term                    INT                     NOT NULL,
+    amount_given            DECIMAL(15, 2)          NOT NULL,
+    debt                    DECIMAL(15, 2),
+    status                  SMALLINT,
+    next_pay_date           TIMESTAMP,
+    is_notification_enabled BOOLEAN,
+    payment_type            SMALLINT,
+    per_month_pay_sum       DECIMAL(15, 2)          NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user_ (id),
     FOREIGN KEY (account_id) REFERENCES account (id)
 );
@@ -106,7 +108,6 @@ CREATE TABLE credit
 CREATE TABLE deposit
 (
     id                       BIGSERIAL PRIMARY KEY,
-    deposit_id               SERIAL             NOT NULL,
     date                     TIMESTAMP default now() NOT NULL,
     user_id                  BIGSERIAL               NOT NULL,
     account_id               BIGSERIAL               NOT NULL,
