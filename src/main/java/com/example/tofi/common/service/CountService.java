@@ -35,5 +35,11 @@ public class CountService {
                 / (Math.pow(1 + monthlyInterestRate, loanTermInMonths) - 1);
     }
 
+    public Double calculatePenalty(Double amount, Integer daysOverdue) {
+        double interestRate = 0.1;
+        // Рассчитываем штраф по формуле: сумма * (процентная ставка за просрочку / 100) * (количество дней просрочки / 365)
+        return amount * (interestRate / 100) * (daysOverdue / 365);
+    }
+
 
 }

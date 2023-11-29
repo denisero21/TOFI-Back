@@ -27,20 +27,27 @@ public class CreditService {
         Credit credit = new Credit();
         BeanUtils.copyProperties(createCreditDto, credit);
         credit.setDate(LocalDateTime.now());
-        credit.setDebt(credit.getAmountGiven());
         credit.setNextPayDate(LocalDateTime.now().plusMonths(1));
         credit.setUserId(userId);
         credit.setStatus(CreditStatus.NEW);
+        credit.setPenya(0D);
         credit.setPerMonthPaySum(countService.countPerMonthPaySum(
                 createCreditDto.getAmountGiven(),
                 createCreditDto.getTerm().getTerm(),
                 createCreditDto.getTerm().getPercent()));
+        credit.setDebt(credit.getPerMonthPaySum()*createCreditDto.getTerm().getTerm());
         creditRepository.save(credit);
         if (createCreditDto.getPaymentType().equals(PaymentType.AUTO)) {
             // TODO: 27.11.2023 create quartz job
         }
 
     }
+
+//    public void getCreditPaymentInfo(Long id){
+//        Credit credit = creditRepository.findById(id).orElseThrow(RuntimeException::new);
+//        Long days = ChronoUnit.DAYS.between(credit.getNextPayDate(), LocalDateTime.now());
+//        Double penya = countService.calculatePenalty();
+//    }
 
     public void makePaymentForCredit(Long id) {
         Credit credit = creditRepository.findById(id).orElseThrow(RuntimeException::new);

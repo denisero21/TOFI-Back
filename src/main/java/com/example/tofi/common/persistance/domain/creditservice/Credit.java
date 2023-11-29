@@ -43,6 +43,9 @@ public class Credit extends AbstractPersistentObject {
     @Column(name = "per_month_pay_sum")
     Double perMonthPaySum;
 
+    @Column(name = "penya")
+    Double penya;
+
     @Column(name = "status")
     CreditStatus status;
 
