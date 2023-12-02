@@ -49,7 +49,6 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\config\OpenA
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\service\CountService.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\NotificationPriorityException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\creditservice\dto\MakePaymentRequest.java
-D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\TerminalUsedException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\PaymentTypeException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\security\filter\JwtAuthFilter.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\util\AuthContextUtil.java
@@ -79,7 +78,6 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\Pa
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\auth\config\MailConfig.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\util\StringUtil.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\constant\Constant.java
-D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\VirtualPosP2PTerminalException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\DataNotFoundException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\PayLinkException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\repository\VerificationTokenRepository.java
@@ -121,7 +119,6 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\account\controller\AccountController.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\CommissionInRangeException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\UserSessionException.java
-D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\VirtualPosUsedException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\auth\controller\AuthController.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\BankRequestException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\user\UserDtoResponse.java

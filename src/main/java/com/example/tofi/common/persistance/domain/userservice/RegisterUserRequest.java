@@ -29,8 +29,8 @@ public class RegisterUserRequest implements Serializable {
     @JsonProperty("phone_number")
     String phoneNumber;
 
-    @JsonProperty("is_blocked")
-    boolean isBlocked;
+    @JsonProperty("is_enabled")
+    boolean isEnabled;
 
     @JsonProperty("two_factor_auth")
     boolean twoFactorAuth;
