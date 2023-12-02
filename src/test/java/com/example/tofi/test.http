@@ -3,11 +3,11 @@ Content-Type: application/json
 
 {
   "full_name": "Johnhhhh Doe",
-  "email": "user5@user.com",
+  "email": "oleg.krivenkov.spam@gmail.com",
   "phone_number": "123-456-7890",
-  "is_blocked": false,
-  "two_factor_auth": false,
-  "password": "user"
+  "is_enabled": true,
+  "two_factor_auth": true,
+  "password": "oleg"
 }
 
 ###
@@ -15,17 +15,27 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-"login": "user@user.com",
-"password": "user"
+"login": "oleg.krivenkov.spam@gmail.com",
+"password": "oleg"
 }
 
 ###
-POST http://localhost:8080/api/users/4/accounts
+POST http://localhost:8080/api/auth/confirm_otp
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNPTkZJUk1fT1RQIn1dLCJ0d29fZmFjdG9yIjp0cnVlLCJzdWIiOiJRUCIsImlzcyI6IlFBWkFRUEFZIiwiZXhwIjoxNzAxNTI5NjM2fQ.6QGM9vQPJfZEfH8qVwApH25Y5OYvR2Oq7BxwGzILDer6UEPWbaAc948HWcZnPu0l7vl7UW2Kht923pAugyY8Pg
 Content-Type: application/json
 
 {
+  "otp_code": 275956
+}
+
+###
+POST http://localhost:8080/api/users/1/accounts
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6IiIsImF1dGhvcml0aWVzIjpbXSwidHdvX2ZhY3RvciI6ZmFsc2UsInN1YiI6IlFQIiwiaXNzIjoiUUFaQVFQQVkiLCJleHAiOjE3MDE1Mjk2NjZ9.hPljBHr32mwW-GMOI-a7j6Mk5ZEqpkUAh5u2tUvOFLkuhLia2QGYyLtRP-ajf8xNZ06oAcF90-EVnJ7TSegJeA
+
+{
   "currency": "USD",
-  "name": "Account 3"
+  "name": "Account 1"
 }
 
 ###

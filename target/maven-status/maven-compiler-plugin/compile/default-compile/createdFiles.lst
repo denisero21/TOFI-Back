@@ -3,6 +3,7 @@ com\example\tofi\common\persistance\domain\userservice\dto\ErrorCode.class
 com\example\tofi\common\util\StringUtil.class
 com\example\tofi\common\persistance\domain\authservice\LockedUser.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\NameAble.class
+com\example\tofi\common\web\exception\IllegalRequestDataException.class
 com\example\tofi\credit\service\CreditService.class
 com\example\tofi\common\persistance\repository\SmsCodeRepository.class
 com\example\tofi\credit\controller\CreditController.class
@@ -30,7 +31,7 @@ com\example\tofi\common\exception\exception\UserFieldRestrictionException.class
 com\example\tofi\common\persistance\repository\AccountRepository.class
 com\example\tofi\common\util\MessageUtil.class
 com\example\tofi\common\persistance\domain\authservice\Logout.class
-com\example\tofi\common\persistance\domain\accountservice\dto\Test.class
+com\example\tofi\common\web\exception\ApplicationException.class
 com\example\tofi\common\persistance\domain\userservice\SmsCode.class
 com\example\tofi\common\exception\PaylinkBlockedException.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\PhoneAble.class
@@ -48,6 +49,7 @@ com\example\tofi\common\persistance\domain\creditservice\CreditStatus.class
 com\example\tofi\common\service\CountService.class
 com\example\tofi\common\exception\AgentFieldRestrictionException.class
 com\example\tofi\common\util\JwsUtil.class
+com\example\tofi\common\web\exception\ErrorType.class
 com\example\tofi\common\persistance\domain\userservice\dto\email\DefaultEmailSubject.class
 com\example\tofi\auth\controller\ResetPasswordController.class
 com\example\tofi\common\exception\PaymentTypeException.class
@@ -84,7 +86,7 @@ com\example\tofi\common\exception\JwtTokenException.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\PasswordConfirmAble.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\UserDto.class
 com\example\tofi\common\exception\SystemSettingException.class
-com\example\tofi\common\exception\VirtualPosP2PTerminalException.class
+com\example\tofi\common\web\exception\GlobalExceptionHandler.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\UpdateUserRequest.class
 com\example\tofi\common\exception\DataNotFoundException.class
 com\example\tofi\common\persistance\domain\userservice\ConfirmOtpRequest.class
@@ -105,7 +107,6 @@ com\example\tofi\common\exception\exception\VirtualPosForP2PExistException.class
 com\example\tofi\common\exception\BankRequestException.class
 com\example\tofi\common\exception\exception\PaymentDirectionException.class
 com\example\tofi\common\exception\exception\ActionException.class
-com\example\tofi\common\exception\VirtualPosUsedException.class
 com\example\tofi\account\service\AccountService.class
 com\example\tofi\common\util\register\RegisterUtil.class
 com\example\tofi\common\persistance\domain\authservice\ResetUserPasswordRequest.class
@@ -118,7 +119,6 @@ com\example\tofi\common\persistance\domain\userservice\dto\user\UpdateUserPasswo
 com\example\tofi\common\persistance\repository\RoleRepository.class
 com\example\tofi\common\security\handler\QpAccessDeniedHandler.class
 com\example\tofi\common\persistance\domain\userservice\serialization\EmailDeserialization.class
-com\example\tofi\common\exception\TerminalUsedException.class
 com\example\tofi\common\exception\exception\UserInactiveException.class
 com\example\tofi\common\persistance\domain\authservice\Logout$LogoutBuilder.class
 com\example\tofi\common\security\filter\JwtAuthFilter.class
@@ -128,6 +128,7 @@ com\example\tofi\common\persistance\domain\userservice\RestrictionsHolder.class
 com\example\tofi\common\exception\exception\CommissionInRangeException.class
 com\example\tofi\common\security\filter\JwtVerifierFilter.class
 com\example\tofi\common\config\WebConfig.class
+com\example\tofi\common\web\exception\ErrorInfo.class
 com\example\tofi\common\persistance\domain\userservice\PersistentObject.class
 com\example\tofi\common\persistance\domain\creditservice\CreditTerm.class
 com\example\tofi\common\persistance\domain\userservice\dto\email\DefaultEmailText.class

@@ -2,11 +2,9 @@ package com.example.tofi.auth.service;
 
 import com.example.tofi.common.constant.Constant;
 import com.example.tofi.common.exception.exception.TwoFactorAuthException;
-import com.example.tofi.common.exception.exception.UserSessionException;
 import com.example.tofi.common.persistance.domain.authservice.AuthResponse;
 import com.example.tofi.common.persistance.domain.authservice.Jwt;
 import com.example.tofi.common.persistance.domain.authservice.LockedUser;
-import com.example.tofi.common.persistance.domain.authservice.Logout;
 import com.example.tofi.common.persistance.domain.userservice.ConfirmOtpRequest;
 import com.example.tofi.common.persistance.domain.userservice.Login;
 import com.example.tofi.common.persistance.domain.userservice.User;
@@ -35,7 +33,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.StringTokenizer;
 
 @Slf4j
@@ -76,7 +73,7 @@ public class AuthService {
                 boolean isTwoFactor = user.isTwoFactorAuth();
                 LocalDateTime expiryOtpDate = null;
                 if (isTwoFactor) {
-                    expiryOtpDate = smsService.sendSms(user.getId(), user.getPhoneNumber());
+                    expiryOtpDate = smsService.sendSms(user.getId(), user.getEmail());
                     jwt.setIsTwoFactor(true);
                 } else {
                     jwt.setIsTwoFactor(false);
@@ -113,12 +110,10 @@ public class AuthService {
         String email = auth.getName();
         long userId = Long.parseLong(jwtClaims.get("user_id").toString());
         smsService.validateOtp(otp.getOtpCode(), userId, email);
-        long agentId = Long.parseLong(jwtClaims.get("agent_id").toString());
 
         Jwt jwt = new Jwt();
         jwt.setEmail(email);
         jwt.setUserId(userId);
-        jwt.setAgentId(agentId);
         jwt.setIsTwoFactor(false);
         jwt.setAuthorities(auth.getAuthorities());
         return new JwtToken(jwtProvider.generateToken(jwt), null);
@@ -131,7 +126,7 @@ public class AuthService {
         Claims jwtClaims = jwtProvider.extractAllClaims(jwtAuthHeader);
         long userId = Long.parseLong(jwtClaims.get("user_id").toString());
         final User user = userRepository.findById(userId).orElseThrow();
-        LocalDateTime expiryOtpDate = smsService.reSendSms(userId, user.getPhoneNumber());
+        LocalDateTime expiryOtpDate = smsService.reSendSms(userId, user.getEmail());
         Jwt jwt = new Jwt();
         jwt.setUserId(user.getId());
         jwt.setEmail(user.getEmail());

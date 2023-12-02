@@ -1,6 +1,6 @@
 package com.example.tofi.common.util;
 
-import com.example.tofi.common.exception.ApplicationException;
+import com.example.tofi.common.web.exception.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;

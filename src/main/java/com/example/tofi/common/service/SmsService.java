@@ -1,5 +1,6 @@
 package com.example.tofi.common.service;
 
+import com.example.tofi.auth.service.EmailService;
 import com.example.tofi.common.constant.Constant;
 import com.example.tofi.common.exception.DataNotFoundException;
 import com.example.tofi.common.exception.OtpException;
@@ -9,17 +10,10 @@ import com.example.tofi.common.persistance.repository.SmsCodeRepository;
 import com.example.tofi.common.persistance.repository.UserRepository;
 import com.example.tofi.common.util.MessageUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Service;
-import org.apache.http.client.utils.URIBuilder;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -33,6 +27,10 @@ public class SmsService {
     private final SmsCodeRepository smsCodeRepository;
     private final LoginAttemptService loginAttemptService;
     private final UserRepository userRepository;
+    private final EmailService emailService;
+
+    @Value("${spring.mail.username}")
+    private String mailSenderUserName;
 
     public void validateOtp(Integer otpCode, Long userId, String email) {
         SmsCode smsCodeFromDB = smsCodeRepository.findSmsCodesByUserId(userId)
@@ -58,45 +56,10 @@ public class SmsService {
         }
     }
 
-    public LocalDateTime sendSms(Long userId, String phoneNumber) {
+    public LocalDateTime sendSms(Long userId, String email) {
         Random random = new Random();
         int code = random.nextInt(900000) + 100000;
-        String login = "login";
-        String password = "password";
-        String message = String.valueOf(code) /*+ ms.getMessage("info.otp.code")*/; // TODO: 24.07.2023 set message with OTP code
-        try {
-            URI uri = new URIBuilder()
-                    .setScheme("https")
-                    .setHost("smsc.kz")
-                    .setPath("/sys/send.php")
-                    .addParameter("login", login)
-                    .addParameter("password", password)
-                    .addParameter("phones", phoneNumber)
-                    .addParameter("message", message)
-                    .build();
 
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(uri)
-                    .GET()
-                    .build();
-
-            HttpClient httpClient = HttpClient
-                    .newBuilder()
-                    .connectTimeout(Duration.ofSeconds(10))
-                    .build();
-
-            int statusCode;
-            try {
-                statusCode = httpClient.send(request, HttpResponse.BodyHandlers.ofString()).statusCode();
-            } catch (InterruptedException e) {
-                throw new OtpException(ms.getMessage("error.sms.send"));
-            }
-            if (statusCode != 200) {
-                throw new OtpException(ms.getMessage("error.sms.send"));
-            }
-        } catch (URISyntaxException | IOException e) {
-            throw new OtpException(ms.getMessage("error.sms.send"));
-        }
 
         SmsCode smsCode = new SmsCode();
         smsCode.setUserId(userId);
@@ -107,13 +70,13 @@ public class SmsService {
                 .findSmsCodesByUserId(userId)
                 .ifPresent(tempCode -> smsCodeRepository.deleteById(tempCode.getId()));
         smsCodeRepository.save(smsCode);
+        emailService.sendSimpleMessage(mailSenderUserName,email,"U have been registered in TOFIBANK","Your otp code is here: " + smsCode );
         return expiryOtpDate;
     }
-
-    public LocalDateTime reSendSms(Long userId,String phoneNumber) {
+    public LocalDateTime reSendSms(Long userId,String email) {
         SmsCode smsCode = smsCodeRepository
                 .findSmsCodesByUserId(userId).orElseThrow(() -> new OtpException("error.otp.wrong_code"));
         if(smsCode.getExpiryDate().isAfter(LocalDateTime.now())) throw new OtpException("error.otp.not_exp_code");
-        return sendSms(userId,phoneNumber);
+        return sendSms(userId,email);
     }
 }
