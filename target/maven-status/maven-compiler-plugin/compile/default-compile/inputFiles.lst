@@ -42,6 +42,7 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\user\PasswordConfirmAble.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\AbstractPersistentObject.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\creditservice\CreditTerm.java
+D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\ApplicationException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\PersistentObject.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\user\PasswordChangeAble.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\Login.java
@@ -58,6 +59,7 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\user\service\UserSe
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\ErrorInfo.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\TwoFactorAuthException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\FileExtensionException.java
+D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\ErrorInfo.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\user\UpdateUserRequest.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\config\SecurityConfig.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\config\WebConfig.java
@@ -72,9 +74,11 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\ConfirmOtpRequest.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\security\JwtProvider.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\token\PrivilegeHolder.java
+D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\ErrorType.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\repository\SmsCodeRepository.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\DomainEntityExistsException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\PaymentStatusException.java
+D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\IllegalRequestDataException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\auth\config\MailConfig.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\util\StringUtil.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\constant\Constant.java
@@ -102,6 +106,7 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\PaymentDirectionException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\email\DefaultEmailText.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\ForteBankPaymentException.java
+D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\GlobalExceptionHandler.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\user\EmailAble.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\user\UpdateUserProfilePasswordRequest.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\exception\ActionException.java
