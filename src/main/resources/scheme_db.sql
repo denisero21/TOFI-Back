@@ -113,7 +113,9 @@ CREATE TABLE deposit
     account_id               BIGSERIAL               NOT NULL,
     term                     INT                     NOT NULL,
     amount                   DECIMAL(15, 2)          NOT NULL,
+    compensation_amount      DECIMAL(15, 2)          NOT NULL,
     status                   SMALLINT,
+    type                     SMALLINT,
     FOREIGN KEY (user_id) REFERENCES user_ (id),
     FOREIGN KEY (account_id) REFERENCES account (id)
 );
