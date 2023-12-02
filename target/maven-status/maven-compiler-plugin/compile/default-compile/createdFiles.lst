@@ -32,7 +32,6 @@ com\example\tofi\common\persistance\repository\AccountRepository.class
 com\example\tofi\common\util\MessageUtil.class
 com\example\tofi\common\persistance\domain\authservice\Logout.class
 com\example\tofi\common\web\exception\ApplicationException.class
-com\example\tofi\common\persistance\domain\accountservice\dto\Test.class
 com\example\tofi\common\persistance\domain\userservice\SmsCode.class
 com\example\tofi\common\exception\PaylinkBlockedException.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\PhoneAble.class
