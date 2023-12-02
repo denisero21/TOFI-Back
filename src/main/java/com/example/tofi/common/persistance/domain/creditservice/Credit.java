@@ -19,6 +19,8 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Credit extends AbstractPersistentObject {
 
+    String name;
+
     @Column(name = "date")
     LocalDateTime date;
 

@@ -1,9 +1,8 @@
 package com.example.tofi.credit.controller;
 
-import com.example.tofi.common.persistance.domain.accountservice.Account;
-import com.example.tofi.common.persistance.domain.accountservice.dto.CreateAccountDto;
 import com.example.tofi.common.persistance.domain.creditservice.Credit;
 import com.example.tofi.common.persistance.domain.creditservice.dto.CreateCreditDto;
+import com.example.tofi.common.persistance.domain.creditservice.dto.MakePaymentRequest;
 import com.example.tofi.credit.service.CreditService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -47,7 +46,7 @@ public class CreditController {
         return creditService.getUsersCredits(userId);
     }
 
-    @GetMapping(
+    @PostMapping(
             value = "api/users/{user_id}/credit/{credit_id}/pay",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Pay for the credit")
@@ -55,7 +54,8 @@ public class CreditController {
             @ApiResponse(responseCode = "200", description = "all good"),
     })
     public void payCredit(
-            @PathVariable("credit_id") Long id) {
-         creditService.makePaymentForCredit(id);
+            @PathVariable("credit_id") Long id,
+            @RequestBody MakePaymentRequest request) {
+         creditService.makePaymentForCredit(id,request);
     }
 }

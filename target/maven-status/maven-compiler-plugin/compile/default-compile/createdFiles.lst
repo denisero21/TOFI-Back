@@ -5,8 +5,8 @@ com\example\tofi\common\persistance\domain\authservice\LockedUser.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\NameAble.class
 com\example\tofi\credit\service\CreditService.class
 com\example\tofi\common\persistance\repository\SmsCodeRepository.class
-com\example\tofi\common\util\report\AbstractExcelReport.class
 com\example\tofi\credit\controller\CreditController.class
+com\example\tofi\common\persistance\domain\creditservice\dto\CreditPaymentInfoDto.class
 com\example\tofi\common\exception\exception\SavedCardNotFoundException.class
 com\example\tofi\common\persistance\domain\authservice\PaymentJwt.class
 com\example\tofi\auth\service\VerificationTokenService.class
@@ -18,6 +18,7 @@ com\example\tofi\common\persistance\domain\userservice\dto\user\PasswordAble.cla
 com\example\tofi\common\persistance\domain\userservice\dto\user\UserLoginRequest.class
 com\example\tofi\common\exception\exception\FileExtensionException.class
 com\example\tofi\common\exception\RequiredUrlParameterException.class
+com\example\tofi\common\persistance\domain\creditservice\dto\MakePaymentRequest.class
 com\example\tofi\common\exception\ErrorInfo.class
 com\example\tofi\common\persistance\domain\authservice\VerificationToken.class
 com\example\tofi\common\persistance\domain\userservice\Role.class
@@ -44,7 +45,6 @@ com\example\tofi\common\persistance\domain\userservice\User.class
 com\example\tofi\common\exception\RoleStillAssignedToUsersException.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\PasswordChangeAble.class
 com\example\tofi\common\persistance\domain\creditservice\CreditStatus.class
-com\example\tofi\common\util\report\ReportUtil.class
 com\example\tofi\common\service\CountService.class
 com\example\tofi\common\exception\AgentFieldRestrictionException.class
 com\example\tofi\common\util\JwsUtil.class

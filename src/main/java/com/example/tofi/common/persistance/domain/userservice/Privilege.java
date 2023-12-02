@@ -1,9 +1,10 @@
 package com.example.tofi.common.persistance.domain.userservice;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.compress.utils.Sets;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -106,7 +107,7 @@ public enum Privilege implements GrantedAuthority {
     }
 
     public static Set<Privilege> getAllValues() {
-        return Sets.newHashSet(Privilege.values());
+        return new HashSet<>(List.of(Privilege.values()));
     }
 
     public static Set<Privilege> get(PrivilegeObject privilegeObject) {
