@@ -42,7 +42,7 @@ public class CountService {
     }
 
     public Double calculateCompensationAmountForIrrevocableDeposit(Double sum, Integer months, Double percent){
-        return sum + (sum * months * (percent / 100));
+        return sum + (sum * (months) * (percent / 100));
     }
 
     public Double calculateCompensationAmountForRevocableDeposit(Double sum, Integer days, Double percent){

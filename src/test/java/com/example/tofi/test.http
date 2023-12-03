@@ -49,3 +49,13 @@ Content-Type: application/json
   "amount_given": 5000.0,
   "is_notification_enabled": false
 }
+
+###
+POST http://localhost:8080/api/users/2/accounts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNPTkZJUk1fT1RQIn1dLCJ0d29fZmFjdG9yIjp0cnVlLCJzdWIiOiJRUCIsImlzcyI6IlFBWkFRUEFZIiwiZXhwIjoxNzAxNjA2NzU0fQ.WbTICyV_Pej59dQTyI6v7eiY4V2T8EjmlCBrhEG0xLJJ-nBqWqMy5jVI-s9xPbFoci4xsyRaD9x627HP0-mVYA
+
+{
+  "name": "account",
+  "currency": "BYN"
+}

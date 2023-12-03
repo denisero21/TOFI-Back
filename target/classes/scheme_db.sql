@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS deposit, credit, account, user_verification_token,
+    locked, sms_code, password_reset_token, role_privilege, user_role, privilege_,
+    role_, user_;
+
 CREATE TABLE user_
 (
     id              BIGSERIAL PRIMARY KEY,
@@ -113,7 +117,9 @@ CREATE TABLE deposit
     account_id               BIGSERIAL               NOT NULL,
     term                     INT                     NOT NULL,
     amount                   DECIMAL(15, 2)          NOT NULL,
+    compensation_amount      DECIMAL(15, 2)          NOT NULL,
     status                   SMALLINT,
+    type                     SMALLINT,
     FOREIGN KEY (user_id) REFERENCES user_ (id),
     FOREIGN KEY (account_id) REFERENCES account (id)
 );
