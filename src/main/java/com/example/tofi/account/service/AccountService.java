@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +32,14 @@ public class AccountService {
                 .findById(accountId)
                 .orElseThrow(()-> new RuntimeException("Account not found"));
         account.setBalance(account.getBalance() + 10000D);
+        accountRepository.save(account);
+    }
+
+    public void getAmountFromDeposit(Long accountId, Double amount){
+        Account account = accountRepository
+                .findById(accountId)
+                .orElseThrow(()-> new RuntimeException("Account not found"));
+        account.setBalance(account.getBalance() + amount);
         accountRepository.save(account);
     }
 

@@ -41,5 +41,13 @@ public class CountService {
         return amount * (interestRate / 100) * (daysOverdue / 365);
     }
 
+    public Double calculateCompensationAmountForIrrevocableDeposit(Double sum, Integer months, Double percent){
+        return sum + (sum * months * (percent / 100));
+    }
+
+    public Double calculateCompensationAmountForRevocableDeposit(Double sum, Integer days, Double percent){
+        return sum + (sum * (days / 30) * (percent / 100));
+    }
+
 
 }
