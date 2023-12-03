@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS deposit, credit, account, user_verification_token,
+    locked, sms_code, password_reset_token, role_privilege, user_role, privilege_,
+    role_, user_;
+
 CREATE TABLE user_
 (
     id              BIGSERIAL PRIMARY KEY,

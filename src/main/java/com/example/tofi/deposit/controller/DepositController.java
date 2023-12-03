@@ -27,6 +27,7 @@ public class DepositController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Deposit created"),
     })
+//    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createDeposit(
             @Valid @RequestBody CreateDepositDto createDepositDto,
@@ -35,9 +36,10 @@ public class DepositController {
     }
 
     @PostMapping(
-            value = "api/users/{user_id}/deposit/{deposit_id}/close",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            value = "api/users/{user_id}/deposit/{deposit_id}/close"
+    )
     @Operation(summary = "Close deposit")
+//    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "202", description = "Account closed"),
     })
@@ -48,8 +50,9 @@ public class DepositController {
 
     @GetMapping(
             value = "api/users/{user_id}/deposit",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Get list of deposits")
+//    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns list of deposits"),
     })
