@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -47,7 +46,7 @@ public class JwtVerifierFilter extends OncePerRequestFilter {
                     .collect(Collectors.toSet());
         }
         var auth = new UsernamePasswordAuthenticationToken(username, null, simpleGrantedAuthorities);
-        SecurityContextHolder.getContext().setAuthentication(auth);
+        //SecurityContextHolder.getContext().setAuthentication(auth);
         filterChain.doFilter(request, response);
     }
 

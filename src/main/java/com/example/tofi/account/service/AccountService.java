@@ -35,6 +35,14 @@ public class AccountService {
         accountRepository.save(account);
     }
 
+    public void burmalda(Long accountId){
+        Account account = accountRepository
+                .findById(accountId)
+                .orElseThrow(()-> new RuntimeException("Account not found"));
+        account.setBalance(2.15);
+        accountRepository.save(account);
+    }
+
     public void getAmountFromDeposit(Long accountId, Double amount){
         Account account = accountRepository
                 .findById(accountId)

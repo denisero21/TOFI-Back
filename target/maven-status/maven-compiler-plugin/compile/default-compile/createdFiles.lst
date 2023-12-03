@@ -22,6 +22,7 @@ com\example\tofi\common\exception\RequiredUrlParameterException.class
 com\example\tofi\common\persistance\domain\creditservice\dto\MakePaymentRequest.class
 com\example\tofi\common\exception\ErrorInfo.class
 com\example\tofi\common\persistance\domain\authservice\VerificationToken.class
+com\example\tofi\common\persistance\domain\depositservice\Deposit.class
 com\example\tofi\common\persistance\domain\userservice\Role.class
 com\example\tofi\common\persistance\domain\accountservice\dto\CreateAccountDto.class
 com\example\tofi\common\util\Utilities.class
@@ -32,12 +33,14 @@ com\example\tofi\common\persistance\repository\AccountRepository.class
 com\example\tofi\common\util\MessageUtil.class
 com\example\tofi\common\persistance\domain\authservice\Logout.class
 com\example\tofi\common\web\exception\ApplicationException.class
+com\example\tofi\common\persistance\domain\depositservice\DepositTerm.class
 com\example\tofi\common\persistance\domain\userservice\SmsCode.class
 com\example\tofi\common\exception\PaylinkBlockedException.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\PhoneAble.class
 com\example\tofi\common\persistance\domain\userservice\Privilege$PrivilegeType.class
 com\example\tofi\common\security\JwtProvider.class
 com\example\tofi\common\exception\exception\ForteBankPaymentException.class
+com\example\tofi\common\persistance\repository\DepositRepository.class
 com\example\tofi\common\exception\ApplicationException.class
 com\example\tofi\common\persistance\domain\accountservice\Account.class
 com\example\tofi\common\security\handler\QpAuthenticationEntryPoint.class
@@ -45,6 +48,7 @@ com\example\tofi\common\exception\SchedulerJobException.class
 com\example\tofi\common\persistance\domain\userservice\User.class
 com\example\tofi\common\exception\RoleStillAssignedToUsersException.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\PasswordChangeAble.class
+com\example\tofi\deposit\controller\DepositController.class
 com\example\tofi\common\persistance\domain\creditservice\CreditStatus.class
 com\example\tofi\common\service\CountService.class
 com\example\tofi\common\exception\AgentFieldRestrictionException.class
@@ -77,6 +81,7 @@ com\example\tofi\common\persistance\domain\userservice\dto\token\PrivilegeHolder
 com\example\tofi\common\util\DateUtil.class
 com\example\tofi\auth\controller\AuthController.class
 com\example\tofi\user\service\UserService.class
+com\example\tofi\deposit\service\DepositService.class
 com\example\tofi\common\exception\exception\NotificationRelationException.class
 com\example\tofi\common\persistance\repository\CreditRepository.class
 com\example\tofi\common\util\PasswordUtil.class
@@ -109,6 +114,7 @@ com\example\tofi\common\exception\exception\PaymentDirectionException.class
 com\example\tofi\common\exception\exception\ActionException.class
 com\example\tofi\account\service\AccountService.class
 com\example\tofi\common\util\register\RegisterUtil.class
+com\example\tofi\common\persistance\domain\depositservice\DepositType.class
 com\example\tofi\common\persistance\domain\authservice\ResetUserPasswordRequest.class
 com\example\tofi\common\persistance\domain\userservice\dto\user\EmailAble.class
 com\example\tofi\common\persistance\domain\userservice\RegisterUserRequest.class
@@ -128,12 +134,14 @@ com\example\tofi\common\persistance\domain\userservice\RestrictionsHolder.class
 com\example\tofi\common\exception\exception\CommissionInRangeException.class
 com\example\tofi\common\security\filter\JwtVerifierFilter.class
 com\example\tofi\common\config\WebConfig.class
+com\example\tofi\common\persistance\domain\depositservice\DepositStatus.class
 com\example\tofi\common\web\exception\ErrorInfo.class
 com\example\tofi\common\persistance\domain\userservice\PersistentObject.class
 com\example\tofi\common\persistance\domain\creditservice\CreditTerm.class
 com\example\tofi\common\persistance\domain\userservice\dto\email\DefaultEmailText.class
 com\example\tofi\common\persistance\domain\userservice\dto\token\JwtToken.class
 com\example\tofi\TofiApplication.class
+com\example\tofi\common\persistance\domain\depositservice\dto\CreateDepositDto.class
 com\example\tofi\common\persistance\domain\userservice\dto\token\TempTokenDto.class
 com\example\tofi\auth\service\EmailService.class
 com\example\tofi\common\persistance\repository\VerificationTokenRepository.class

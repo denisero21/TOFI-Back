@@ -80,6 +80,12 @@ public class CreditService {
         accountRepository.save(account);
     }
 
+    public void changeCreditStatus(Long creditId,CreditStatus creditStatus){
+        Credit credit = creditRepository.findById(creditId).orElseThrow(()-> new RuntimeException("Credit not found"));
+        credit.setStatus(creditStatus);
+        creditRepository.save(credit);
+    }
+
 
     public List<Credit> getUsersCredits(Long userId) {
         return creditRepository.findAllByUserId(userId);

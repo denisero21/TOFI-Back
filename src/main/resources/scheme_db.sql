@@ -79,6 +79,7 @@ ALTER TABLE user_verification_token
 CREATE TABLE account
 (
     id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR(100),
     date       TIMESTAMP      default now() NOT NULL,
     user_id    BIGSERIAL                    NOT NULL,
     balance    DECIMAL(15, 2) DEFAULT 0.0   NOT NULL,
@@ -90,6 +91,7 @@ CREATE TABLE account
 CREATE TABLE credit
 (
     id                      BIGSERIAL PRIMARY KEY,
+    name                    VARCHAR(100),
     date                    TIMESTAMP default now() NOT NULL,
     user_id                 BIGSERIAL               NOT NULL,
     account_id              BIGSERIAL               NOT NULL,
@@ -108,6 +110,7 @@ CREATE TABLE credit
 CREATE TABLE deposit
 (
     id                       BIGSERIAL PRIMARY KEY,
+    name                     VARCHAR(100),
     date                     TIMESTAMP default now() NOT NULL,
     user_id                  BIGSERIAL               NOT NULL,
     account_id               BIGSERIAL               NOT NULL,

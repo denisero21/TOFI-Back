@@ -14,7 +14,7 @@ public enum ErrorType {
     VALIDATION_ERROR("error.validationError", HttpStatus.UNPROCESSABLE_ENTITY),
     BAD_REQUEST("error.appError", HttpStatus.BAD_REQUEST),
     UNAUTHORIZED("error.appError", HttpStatus.UNAUTHORIZED),
-    FORBIDDEN("access.denied", HttpStatus.FORBIDDEN);
+    FORBIDDEN("error.access.denied", HttpStatus.FORBIDDEN);
 
     String errorCode;
     HttpStatus status;

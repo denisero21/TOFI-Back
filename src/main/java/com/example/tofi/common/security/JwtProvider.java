@@ -27,10 +27,9 @@ public class JwtProvider {
     private String secret;
     public static final String DEFAULT_OTP_AUTHORITY = "CONFIRM_OTP";
     public static final String PAYMENT_AUTHORITY = "PAYMENT_AUTHORITY";
-    public static final String ISSUER_ID = "QAZAQPAY";
-    public static final String SUBJECT = "QP";
-    private static final int PAYMENT_TOKEN_EXPIRATION = 1000 * 60 * 20; //15m
-    private static final int JWT_TOKEN_EXPIRATION = 1000 * 60 * 60; //1h
+    public static final String ISSUER_ID = "KRIVBANK";
+    public static final String SUBJECT = "KRIV";
+    private static final int JWT_TOKEN_EXPIRATION = 1000 * 60 * 60 * 24; //1h
     private SecretKey key;
 
     @PostConstruct
