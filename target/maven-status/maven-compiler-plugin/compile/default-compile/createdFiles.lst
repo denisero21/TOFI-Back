@@ -63,6 +63,7 @@ com\example\tofi\common\persistance\domain\authservice\Jwt.class
 com\example\tofi\common\exception\exception\UserSessionException.class
 com\example\tofi\auth\service\AuthService.class
 com\example\tofi\common\persistance\domain\creditservice\PaymentType.class
+com\example\tofi\cryptocurrency\controller\CryptoCurrencyController.class
 com\example\tofi\common\exception\exception\TwoFactorAuthException.class
 com\example\tofi\common\service\LoginAttemptService.class
 com\example\tofi\common\exception\FileCountException.class
@@ -143,6 +144,7 @@ com\example\tofi\common\persistance\domain\userservice\dto\token\JwtToken.class
 com\example\tofi\TofiApplication.class
 com\example\tofi\common\persistance\domain\depositservice\dto\CreateDepositDto.class
 com\example\tofi\common\persistance\domain\userservice\dto\token\TempTokenDto.class
+com\example\tofi\cryptocurrency\service\CryptoCurrencyService.class
 com\example\tofi\auth\service\EmailService.class
 com\example\tofi\common\persistance\repository\VerificationTokenRepository.class
 com\example\tofi\common\persistance\domain\userservice\DefaultRoles.class
