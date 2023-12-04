@@ -81,6 +81,7 @@ D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\security\Jwt
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\userservice\dto\token\PrivilegeHolder.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\ErrorType.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\repository\SmsCodeRepository.java
+D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\persistance\domain\accountservice\dto\TransferRequest.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\DomainEntityExistsException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\exception\PaymentStatusException.java
 D:\Олег\1Study_BSUIR\tofi\src\main\java\com\example\tofi\common\web\exception\IllegalRequestDataException.java
