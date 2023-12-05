@@ -3,6 +3,7 @@ package com.example.tofi.account.controller;
 import com.example.tofi.account.service.AccountService;
 import com.example.tofi.common.persistance.domain.accountservice.Account;
 import com.example.tofi.common.persistance.domain.accountservice.dto.CreateAccountDto;
+import com.example.tofi.common.persistance.domain.accountservice.dto.TransferRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +34,7 @@ public class AccountController {
             @ApiResponse(responseCode = "201", description = "Account created"),
     })
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     public void createAccount(
             @Valid @RequestBody CreateAccountDto accountDto,
             @PathVariable("user_id") Long userId) {
@@ -45,13 +48,14 @@ public class AccountController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns list of accounts"),
     })
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     public List<Account> createAccount(
             @PathVariable("user_id") Long userId) {
         return accountService.getUsersAccounts(userId);
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/accounts/{account_id}/tuda_syuda_millioner",
+            value = "api/users/{user_id}/accounts/{account_id}/add_money",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Temki zhestkie")
     @ApiResponses(value = {
@@ -60,6 +64,32 @@ public class AccountController {
     public void addMoney(
             @PathVariable("account_id") Long id) {
         accountService.tudaSyudaMillioner(id);
+    }
+
+    @GetMapping(
+            value = "api/users/{user_id}/accounts/{account_id}/no_money",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Make ur account have 2.15 dollars")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Bonuska ne vipala"),
+    })
+    public void deleteMoney(
+            @PathVariable("account_id") Long id) {
+        accountService.burmalda(id);
+    }
+
+    @PostMapping(
+            value = "api/users/{user_id}/accounts/transfer",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Make transfer")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success transfer"),
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
+    public void makeTransfer(
+            @Valid @RequestBody TransferRequest request) {
+        accountService.makeTransfer(request);
     }
 
 

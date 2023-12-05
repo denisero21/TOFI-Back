@@ -3,6 +3,7 @@ package com.example.tofi.credit.controller;
 import com.example.tofi.common.persistance.domain.creditservice.Credit;
 import com.example.tofi.common.persistance.domain.creditservice.CreditStatus;
 import com.example.tofi.common.persistance.domain.creditservice.dto.CreateCreditDto;
+import com.example.tofi.common.persistance.domain.creditservice.dto.CreditPaymentInfoDto;
 import com.example.tofi.common.persistance.domain.creditservice.dto.MakePaymentRequest;
 import com.example.tofi.credit.service.CreditService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +32,7 @@ public class CreditController {
             @ApiResponse(responseCode = "201", description = "Account created"),
     })
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     public void createCredit(
             @Valid @RequestBody CreateCreditDto createCreditDto,
             @PathVariable("user_id") Long userId) {
@@ -43,9 +45,22 @@ public class CreditController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns list of credits"),
     })
-    public List<Credit> createCredit(
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
+    public List<Credit> getListCredit(
             @PathVariable("user_id") Long userId) {
         return creditService.getUsersCredits(userId);
+    }
+
+    @GetMapping(
+            value = "api/users/{user_id}/credit/{credit_id}")
+    @Operation(summary = "Get credit payment info")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Returns credit payment info"),
+    })
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
+    public CreditPaymentInfoDto getCreditPaymentInfo(
+            @PathVariable("credit_id") Long creditId) {
+        return creditService.getCreditPaymentInfo(creditId);
     }
 
     @PostMapping(
@@ -55,6 +70,7 @@ public class CreditController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "all good"),
     })
+    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     public void payCredit(
             @PathVariable("credit_id") Long id,
             @RequestBody MakePaymentRequest request) {

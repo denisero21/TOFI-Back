@@ -32,7 +32,7 @@ public class CreditService {
         credit.setDate(LocalDateTime.now());
         credit.setNextPayDate(LocalDateTime.now().plusMonths(1));
         credit.setUserId(userId);
-        credit.setStatus(CreditStatus.NEW);
+        credit.setStatus(CreditStatus.APPROVED);
         credit.setPenya(0D);
         credit.setPerMonthPaySum(countService.countPerMonthPaySum(
                 createCreditDto.getAmountGiven(),
