@@ -134,6 +134,7 @@ com\example\tofi\common\config\SecurityConfig.class
 com\example\tofi\common\exception\PaymentExpiredException.class
 com\example\tofi\common\persistance\domain\userservice\RestrictionsHolder.class
 com\example\tofi\common\exception\exception\CommissionInRangeException.class
+com\example\tofi\common\persistance\domain\accountservice\dto\ChangeAccountDto.class
 com\example\tofi\common\security\filter\JwtVerifierFilter.class
 com\example\tofi\common\config\WebConfig.class
 com\example\tofi\common\persistance\domain\depositservice\DepositStatus.class
