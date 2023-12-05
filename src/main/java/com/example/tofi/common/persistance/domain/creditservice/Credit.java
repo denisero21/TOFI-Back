@@ -1,6 +1,7 @@
 package com.example.tofi.common.persistance.domain.creditservice;
 
 import com.example.tofi.common.persistance.domain.userservice.AbstractPersistentObject;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +23,7 @@ public class Credit extends AbstractPersistentObject {
 
     String name;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "date")
     LocalDateTime date;
 
@@ -45,6 +47,7 @@ public class Credit extends AbstractPersistentObject {
     @Column(name = "debt")
     Double debt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @JsonProperty("next_pay_date")
     @Column(name = "next_pay_date")
     LocalDateTime nextPayDate;

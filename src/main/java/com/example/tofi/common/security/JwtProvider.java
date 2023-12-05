@@ -61,6 +61,7 @@ public class JwtProvider {
         claims.put("agent_id", jwt.getAgentId());
         claims.put("user_id", jwt.getUserId());
         claims.put("email", jwt.getEmail());
+        claims.put("full_name", jwt.getFullName());
         claims.put("two_factor", jwt.getIsTwoFactor());
 
         if (!jwt.getIsTwoFactor()) {

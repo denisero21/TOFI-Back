@@ -17,6 +17,8 @@ public class CreateCreditDto {
     @JsonProperty("account_id")
     Long accountId;
 
+    String name;
+
     @JsonProperty("term")
     CreditTerm term;
 

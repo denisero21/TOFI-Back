@@ -1,6 +1,7 @@
 package com.example.tofi.common.persistance.domain.accountservice;
 
 import com.example.tofi.common.persistance.domain.userservice.AbstractPersistentObject;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +24,7 @@ public class Account extends AbstractPersistentObject {
     @Column(name = "name")
     String name;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "date")
     LocalDateTime date;
 

@@ -67,6 +67,7 @@ public class AuthService {
                 Jwt jwt = new Jwt();
                 jwt.setUserId(user.getId());
                 jwt.setEmail(user.getEmail());
+                jwt.setFullName(user.getFullName());
                 jwt.setAuthorities(Utilities.getUserAuthorities(user));
                 jwt.setIpAddress(getIpAddress(servletRequest));
 
@@ -109,11 +110,13 @@ public class AuthService {
         var auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         long userId = Long.parseLong(jwtClaims.get("user_id").toString());
+        String fullName = jwtClaims.get("full_name").toString();
         smsService.validateOtp(otp.getOtpCode(), userId, email);
 
         Jwt jwt = new Jwt();
         jwt.setEmail(email);
         jwt.setUserId(userId);
+        jwt.setFullName(fullName);
         jwt.setIsTwoFactor(false);
         jwt.setAuthorities(auth.getAuthorities());
         return new JwtToken(jwtProvider.generateToken(jwt), null);
@@ -130,6 +133,7 @@ public class AuthService {
         Jwt jwt = new Jwt();
         jwt.setUserId(user.getId());
         jwt.setEmail(user.getEmail());
+        jwt.setFullName(user.getFullName());
         jwt.setAuthorities(Utilities.getUserAuthorities(user));
         return new JwtToken(jwtProvider.generateToken(jwt), expiryOtpDate);
     }

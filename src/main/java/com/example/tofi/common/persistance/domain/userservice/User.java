@@ -1,5 +1,6 @@
 package com.example.tofi.common.persistance.domain.userservice;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -27,6 +28,7 @@ public class User extends AbstractPersistentObject {
     @Column(name = "password")
     String password;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "date")
     LocalDateTime date;

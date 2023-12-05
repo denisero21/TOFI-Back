@@ -1,5 +1,6 @@
 package com.example.tofi.common.persistance.domain.depositservice;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "deposit")
@@ -28,8 +30,9 @@ public class Deposit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    LocalDate date;
+    LocalDateTime date;
 
     @Column(name = "term", nullable = false)
     DepositTerm term;

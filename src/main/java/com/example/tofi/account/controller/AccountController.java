@@ -44,7 +44,7 @@ public class AccountController {
     @GetMapping(
             value = "api/users/{user_id}/accounts"
     )
-    @Operation(summary = "Create account")
+    @Operation(summary = "Get list of accounts")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns list of accounts"),
     })

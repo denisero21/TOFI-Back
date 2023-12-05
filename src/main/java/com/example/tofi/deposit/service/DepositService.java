@@ -16,6 +16,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -42,7 +43,7 @@ public class DepositService {
         }
         BeanUtils.copyProperties(depositDto, deposit);
         deposit.setUserId(userId);
-        deposit.setDate(LocalDate.now());
+        deposit.setDate(LocalDateTime.now());
         deposit.setStatus(DepositStatus.ONCOMPENSATION);
         deposit.setTerm(depositDto.getTerm());
         depositRepository.save(deposit);

@@ -18,6 +18,7 @@ public class Jwt {
     Long agentId;
     Long userId;
     String email;
+    String fullName;
     Boolean isTwoFactor;
     String ipAddress;
     Collection<? extends GrantedAuthority> authorities;

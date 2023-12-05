@@ -27,9 +27,9 @@ public class CreditController {
     @PostMapping(
             value = "api/users/{user_id}/credit",
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Create account")
+    @Operation(summary = "Create credit")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Account created"),
+            @ApiResponse(responseCode = "201", description = "Credit created"),
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
