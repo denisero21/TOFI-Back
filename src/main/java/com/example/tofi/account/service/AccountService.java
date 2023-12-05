@@ -1,8 +1,11 @@
 package com.example.tofi.account.service;
 
 import com.example.tofi.common.persistance.domain.accountservice.Account;
+import com.example.tofi.common.persistance.domain.accountservice.dto.ChangeAccountDto;
 import com.example.tofi.common.persistance.domain.accountservice.dto.CreateAccountDto;
 import com.example.tofi.common.persistance.domain.accountservice.dto.TransferRequest;
+import com.example.tofi.common.persistance.domain.creditservice.Credit;
+import com.example.tofi.common.persistance.domain.creditservice.CreditStatus;
 import com.example.tofi.common.persistance.repository.AccountRepository;
 import com.example.tofi.common.service.CountService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +38,9 @@ public class AccountService {
         Account account = accountRepository
                 .findById(accountId)
                 .orElseThrow(()-> new RuntimeException("Account not found"));
+        if(account.getIsBlocked()){
+            throw new RuntimeException("Operation error. Account is blocked.");
+        }
         account.setBalance(account.getBalance() + 10000D);
         accountRepository.save(account);
     }
@@ -43,6 +49,9 @@ public class AccountService {
         Account account = accountRepository
                 .findById(accountId)
                 .orElseThrow(()-> new RuntimeException("Account not found"));
+        if(account.getIsBlocked()){
+            throw new RuntimeException("Operation error. Account is blocked.");
+        }
         account.setBalance(2.15);
         accountRepository.save(account);
     }
@@ -51,6 +60,9 @@ public class AccountService {
         Account account = accountRepository
                 .findById(accountId)
                 .orElseThrow(()-> new RuntimeException("Account not found"));
+        if(account.getIsBlocked()){
+            throw new RuntimeException("Operation error. Account is blocked.");
+        }
         account.setBalance(account.getBalance() + amount);
         accountRepository.save(account);
     }
@@ -59,10 +71,17 @@ public class AccountService {
         Account senderAccount = accountRepository
                 .findById(request.getSenderId())
                 .orElseThrow(()-> new RuntimeException("Sender Account not found"));
+        if(senderAccount.getIsBlocked()){
+            throw new RuntimeException("Operation error. Sender account is blocked.");
+        }
 
         Account receiverAccount = accountRepository
                 .findById(request.getReceiverId())
-                .orElseThrow(()-> new RuntimeException("Receiver Account not found"));
+                .orElseThrow(()-> new RuntimeException("Receiver account not found"));
+
+        if(receiverAccount.getIsBlocked()){
+            throw new RuntimeException("Operation error.Receiver Account is blocked.");
+        }
 
         if(senderAccount.getBalance()>= request.getSum()){
             if(receiverAccount.getCurrency().equals(request.getCurrency())){
@@ -75,6 +94,22 @@ public class AccountService {
         }else{
             throw new RuntimeException("Not enough money on account");
         }
+    }
+
+    public void changeAccountStatus(Long accountId, Boolean isBlocked){
+        Account account = accountRepository
+                .findById(accountId)
+                .orElseThrow(()-> new RuntimeException("Account not found"));
+        account.setIsBlocked(isBlocked);
+        accountRepository.save(account);
+    }
+
+    public void changeAccount(Long accountId, ChangeAccountDto dto){
+        Account account = accountRepository
+                .findById(accountId)
+                .orElseThrow(()-> new RuntimeException("Account not found"));
+        account.setName(account.getName());
+        accountRepository.save(account);
     }
 
     public List<Account> getUsersAccounts(Long userId) {
