@@ -49,8 +49,7 @@ public class DepositController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/deposit",
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            value = "api/users/{user_id}/deposit")
     @Operation(summary = "Get list of deposits")
 //    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     @ApiResponses(value = {
