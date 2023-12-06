@@ -70,7 +70,7 @@ public class SmsService {
                 .findSmsCodesByUserId(userId)
                 .ifPresent(tempCode -> smsCodeRepository.deleteById(tempCode.getId()));
         smsCodeRepository.save(smsCode);
-        emailService.sendSimpleMessage(mailSenderUserName,email,"U have been registered in TOFIBANK","Your otp code is here: " + smsCode );
+        emailService.sendSimpleMessage(mailSenderUserName,email,"U have been registered in TOFIBANK","Your otp code is here: " + smsCode.getCode() );
         return expiryOtpDate;
     }
     public LocalDateTime reSendSms(Long userId,String email) {
