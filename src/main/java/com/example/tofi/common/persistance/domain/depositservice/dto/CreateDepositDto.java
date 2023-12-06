@@ -14,10 +14,16 @@ import lombok.experimental.FieldDefaults;
 public class CreateDepositDto {
     @JsonProperty("account_id")
     Long accountId;
+
     @JsonProperty("term")
     DepositTerm term;
+
     @JsonProperty("amount")
     Double amount;
+
     @JsonProperty("deposit_type")
     DepositType type;
+
+    @JsonProperty("name")
+    String name;
 }
