@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
@@ -104,7 +103,7 @@ public class DepositService {
         int days = Math.abs(Math.toIntExact(
                 ChronoUnit.DAYS.between(
                         deposit.getDate(),
-                        LocalDate.now()
+                        LocalDateTime.now()
 
                 )));
 
