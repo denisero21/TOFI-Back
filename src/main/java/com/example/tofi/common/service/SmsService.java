@@ -75,8 +75,8 @@ public class SmsService {
     }
     public LocalDateTime reSendSms(Long userId,String email) {
         SmsCode smsCode = smsCodeRepository
-                .findSmsCodesByUserId(userId).orElseThrow(() -> new OtpException("error.otp.wrong_code"));
-        if(smsCode.getExpiryDate().isAfter(LocalDateTime.now())) throw new OtpException("error.otp.not_exp_code");
+                .findSmsCodesByUserId(userId).orElseThrow(() -> new OtpException(ms.getMessage("error.otp.wrong_code")));
+        if(smsCode.getExpiryDate().isAfter(LocalDateTime.now())) throw new OtpException(ms.getMessage("error.otp.not_exp_code"));
         return sendSms(userId,email);
     }
 }

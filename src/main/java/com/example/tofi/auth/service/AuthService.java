@@ -134,6 +134,7 @@ public class AuthService {
         jwt.setUserId(user.getId());
         jwt.setEmail(user.getEmail());
         jwt.setFullName(user.getFullName());
+        jwt.setIsTwoFactor(true);
         jwt.setAuthorities(Utilities.getUserAuthorities(user));
         return new JwtToken(jwtProvider.generateToken(jwt), expiryOtpDate);
     }
