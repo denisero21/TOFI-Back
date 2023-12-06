@@ -56,6 +56,7 @@ public class Deposit {
     @Column(name = "account_id")
     Long accountId;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "end_date")
     LocalDateTime endDate;
 }
