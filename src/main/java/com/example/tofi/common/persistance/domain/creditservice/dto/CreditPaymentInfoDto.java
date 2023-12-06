@@ -17,13 +17,16 @@ public class CreditPaymentInfoDto {
     @JsonProperty("credit_id")
     Long creditId;
 
-    @JsonProperty("sum")
-    Double sum;
+    @JsonProperty("sum_per_month")
+    Double sumPerMonth;
 
     @JsonProperty("penya")
     Double penya;
 
     @JsonProperty("debt_after_payment")
     Double debtAfterPayment;
+
+    @JsonProperty("sum_to_pay")
+    Double sumToPay;
 
 }

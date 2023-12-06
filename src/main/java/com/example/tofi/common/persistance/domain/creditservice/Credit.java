@@ -71,4 +71,12 @@ public class Credit extends AbstractPersistentObject {
     @JsonProperty("is_notification_enabled")
     @Column(name = "is_notification_enabled")
     Boolean isNotificationEnabled;
+
+    @JsonProperty("is_need_manual_payment")
+    @Column(name = "is_need_manual_payment")
+    Boolean isNeedManualPayment;
+
+    @Column(name = "email_for_notification")
+    @JsonProperty("email_for_notification")
+    String emailForNotification;
 }
