@@ -72,7 +72,7 @@ public class DepositService {
 
     }
 
-    public List<Deposit> getUsersDeposits(Long userId){return depositRepository.findAllByUserId(userId);}
+    public List<Deposit> getUsersDeposits(Long userId){return depositRepository.findAllByUserIdOrderByDateDesc(userId);}
 
     private void transferDepositAmountToAccountBalance(Deposit deposit){
         deposit.setCompensationAmount(getCompensationAmountBeforeClosingDeposit(deposit));

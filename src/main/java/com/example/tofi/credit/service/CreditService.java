@@ -97,7 +97,7 @@ public class CreditService {
 
 
     public List<Credit> getUsersCredits(Long userId) {
-        return creditRepository.findAllByUserId(userId);
+        return creditRepository.findAllByUserIdOrderByDateDesc(userId);
     }
 
 

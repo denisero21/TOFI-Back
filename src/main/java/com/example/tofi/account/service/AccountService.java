@@ -4,8 +4,6 @@ import com.example.tofi.common.persistance.domain.accountservice.Account;
 import com.example.tofi.common.persistance.domain.accountservice.dto.ChangeAccountDto;
 import com.example.tofi.common.persistance.domain.accountservice.dto.CreateAccountDto;
 import com.example.tofi.common.persistance.domain.accountservice.dto.TransferRequest;
-import com.example.tofi.common.persistance.domain.creditservice.Credit;
-import com.example.tofi.common.persistance.domain.creditservice.CreditStatus;
 import com.example.tofi.common.persistance.repository.AccountRepository;
 import com.example.tofi.common.service.CountService;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -113,7 +109,7 @@ public class AccountService {
     }
 
     public List<Account> getUsersAccounts(Long userId) {
-        return accountRepository.findAllByUserId(userId);
+        return accountRepository.findAllByUserIdOrderByDateDesc(userId);
     }
 
 

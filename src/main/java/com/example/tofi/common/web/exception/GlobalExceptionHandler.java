@@ -128,7 +128,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public ErrorInfo handleAccessDeniedException(HttpServletRequest req, HttpServletResponse resp,
                                                  AccessDeniedException e) {
-        return logAndGetErrorInfo(req, resp, e, FORBIDDEN, "Access denied");
+        return logAndGetErrorInfo(req, resp, e, FORBIDDEN, ms.getMessage("error.access.denied"));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
