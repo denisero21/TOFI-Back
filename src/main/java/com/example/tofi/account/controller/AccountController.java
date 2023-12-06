@@ -5,7 +5,6 @@ import com.example.tofi.common.persistance.domain.accountservice.Account;
 import com.example.tofi.common.persistance.domain.accountservice.dto.ChangeAccountDto;
 import com.example.tofi.common.persistance.domain.accountservice.dto.CreateAccountDto;
 import com.example.tofi.common.persistance.domain.accountservice.dto.TransferRequest;
-import com.example.tofi.common.persistance.domain.creditservice.CreditStatus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -52,8 +51,7 @@ public class AccountController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/accounts/{account_id}/add_money",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            value = "api/users/{user_id}/accounts/{account_id}/add_money")
     @Operation(summary = "Temki zhestkie")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Kalyan pokuren"),
@@ -64,8 +62,7 @@ public class AccountController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/accounts/{account_id}/no_money",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            value = "api/users/{user_id}/accounts/{account_id}/no_money")
     @Operation(summary = "Make ur account have 2.15 dollars")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Bonuska ne vipala"),

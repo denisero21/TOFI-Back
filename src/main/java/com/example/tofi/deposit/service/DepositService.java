@@ -56,7 +56,7 @@ public class DepositService {
             if(deposit.getType().equals(DepositType.IRREVOCABLE)){
                 long monthsBetween = ChronoUnit.MONTHS.between(
                         YearMonth.from(deposit.getDate()),
-                        YearMonth.from(LocalDate.now())
+                        YearMonth.from(LocalDateTime.now())
                 );
                 if (monthsBetween < deposit.getTerm().getTerm()) {
                     throw new RuntimeException("Too early to close deposit");
