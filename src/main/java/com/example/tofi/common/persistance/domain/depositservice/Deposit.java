@@ -1,6 +1,7 @@
 package com.example.tofi.common.persistance.domain.depositservice;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,5 +55,8 @@ public class Deposit {
 
     @Column(name = "account_id")
     Long accountId;
+
+    @Column(name = "end_date")
+    LocalDateTime endDate;
 }
 

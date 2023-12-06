@@ -44,6 +44,7 @@ public class DepositService {
         BeanUtils.copyProperties(depositDto, deposit);
         deposit.setUserId(userId);
         deposit.setDate(LocalDateTime.now());
+        deposit.setEndDate(LocalDateTime.now().plusMonths(depositDto.getTerm().getTerm()));
         deposit.setStatus(DepositStatus.ONCOMPENSATION);
         deposit.setTerm(depositDto.getTerm());
         depositRepository.save(deposit);
