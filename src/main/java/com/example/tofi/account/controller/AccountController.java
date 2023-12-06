@@ -19,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
     private final AccountService accountService;
 
