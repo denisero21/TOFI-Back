@@ -9,6 +9,7 @@ import com.example.tofi.common.persistance.repository.CreditRepository;
 import org.quartz.JobExecutionContext;
 import org.quartz.SchedulerException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,7 @@ public class CreditJob extends QuartzJobBean {
         CreditRepository creditRepository = applicationContext.getBean(CreditRepository.class);
         AccountRepository accountRepository = applicationContext.getBean(AccountRepository.class);
         EmailService emailService = applicationContext.getBean(EmailService.class);
+        JavaMailSender emailSender = applicationContext.getBean(JavaMailSender.class);
         Long creditId =(Long) context.getMergedJobDataMap().get("creditId");
         Credit credit = creditRepository
                 .findById(creditId)
@@ -65,7 +67,7 @@ public class CreditJob extends QuartzJobBean {
         if (credit.getDebt().equals(0.0)) {
             credit.setStatus(CreditStatus.PAID);
         } else {
-            credit.setNextPayDate(credit.getNextPayDate().plusMonths(1));
+            credit.setNextPayDate(credit.getNextPayDate().plusMinutes(1));
         }
 
         accountRepository.save(account);

@@ -51,6 +51,18 @@ public class CreditController {
         return creditService.getUsersCredits(userId);
     }
 
+    @DeleteMapping(
+            value = "api/users/{user_id}/credit/{credit_id}")
+    @Operation(summary = "Delete credit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Delete credit"),
+    })
+//    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
+    public void deleteCredit(
+            @PathVariable("credit_id") Long creditId) {
+         creditService.deleteCredit(creditId);
+    }
+
     @GetMapping(
             value = "api/users/{user_id}/credit/{credit_id}")
     @Operation(summary = "Get credit payment info")
