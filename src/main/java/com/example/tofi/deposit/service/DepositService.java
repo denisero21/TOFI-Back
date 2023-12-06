@@ -41,6 +41,10 @@ public class DepositService {
             account.setBalance(account.getBalance() - depositDto.getAmount());
             accountRepository.save(account);
         }
+        if (deposit.getTerm().equals(DepositTerm.PERPETUAL)
+                && deposit.getType().equals(DepositType.IRREVOCABLE)){
+            throw new RuntimeException("It's impossible to open irrevocable perpetual deposit ");
+        }
         BeanUtils.copyProperties(depositDto, deposit);
         deposit.setUserId(userId);
         deposit.setDate(LocalDateTime.now());
@@ -89,27 +93,11 @@ public class DepositService {
     }
 
     private Double getCompensationAmountForIrrevocableDeposit(Deposit deposit) {
-        Double amount = 0D;
-        if (deposit.getTerm().equals(DepositTerm.PERPETUAL)) {
-            int months = Math.abs(Math.toIntExact(
-                    ChronoUnit.DAYS.between(
-                            deposit.getDate(),
-                            LocalDate.now()
-                    ))) / 30;
-            amount = countService.calculateCompensationAmountForIrrevocableDeposit(
-                    deposit.getAmount(),
-                    months,
-                    deposit.getTerm().getIrrevocablePercent()
-            );
-        } else {
-            amount = countService.calculateCompensationAmountForIrrevocableDeposit(
-                    deposit.getAmount(),
-                    deposit.getTerm().getTerm(),
-                    deposit.getTerm().getIrrevocablePercent()
-            );
-        }
-
-        return amount;
+        return countService.calculateCompensationAmountForIrrevocableDeposit(
+                deposit.getAmount(),
+                deposit.getTerm().getTerm(),
+                deposit.getTerm().getIrrevocablePercent()
+        );
     }
 
     private Double getCompensationAmountForRevocableDeposit(Deposit deposit){
