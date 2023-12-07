@@ -35,6 +35,7 @@ public class AuthController {
                     "a temporary token and sends an SMS code to the phone number stored in the database."),
             @ApiResponse(responseCode = "401", description = "Credentials entered incorrectly.")
     })
+    @CrossOrigin("https://tofi-bank.netlify.app")
     @PostMapping(
             value = "/login",
             consumes = MediaType.APPLICATION_JSON_VALUE)
