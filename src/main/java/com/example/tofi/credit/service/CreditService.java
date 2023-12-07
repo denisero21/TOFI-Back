@@ -29,25 +29,30 @@ public class CreditService {
     private final SchedulerJobService jobService;
 
     public void createCredit(Long userId, CreateCreditDto createCreditDto) {
+        Account account = accountRepository
+                .findById(createCreditDto.getAccountId())
+                .orElseThrow(()->new RuntimeException("Account not found"));
         Credit credit = new Credit();
         BeanUtils.copyProperties(createCreditDto, credit);
         credit.setDate(LocalDateTime.now());
-        credit.setNextPayDate(LocalDateTime.now().plusMonths(1));
+        credit.setNextPayDate(LocalDateTime.now().plusMinutes(1));
         credit.setPaymentType(createCreditDto.getPaymentType());
         credit.setUserId(userId);
         credit.setStatus(CreditStatus.APPROVED);
         credit.setPenya(0D);
+        credit.setEmailForNotification(createCreditDto.getEmail());
         credit.setPerMonthPaySum(countService.countPerMonthPaySum(
                 createCreditDto.getAmountGiven(),
                 createCreditDto.getTerm().getTerm(),
                 createCreditDto.getTerm().getPercent()));
         credit.setDebt(credit.getPerMonthPaySum() * createCreditDto.getTerm().getTerm());
-        credit.setIsNeedManualPayment(true);
+        credit.setIsNeedManualPayment(!createCreditDto.getPaymentType().equals(PaymentType.AUTO));
         Credit savedCredit = creditRepository.save(credit);
+        account.setBalance(BigDecimal.valueOf(credit.getAmountGiven()).add(BigDecimal.valueOf(account.getBalance())).doubleValue());
+        accountRepository.save(account);
         if (createCreditDto.getPaymentType().equals(PaymentType.AUTO)) {
-            savedCredit.setIsNeedManualPayment(false);
             jobService.scheduleNewCredit(savedCredit.getId(), credit);
-            creditRepository.save(savedCredit);
+
         }
     }
 
@@ -76,14 +81,19 @@ public class CreditService {
         if (account.getBalance() >= makePaymentRequest.getSumToPay()) {
             account.setBalance(account.getBalance() - makePaymentRequest.getSumToPay());
             credit.setDebt(credit.getDebt() - credit.getPerMonthPaySum());
+            if(credit.getPaymentType().equals(PaymentType.AUTO)){
+                credit.setIsNeedManualPayment(false);
+            }
         } else {
             // TODO: 27.11.2023 чет надо сделать
             throw new RuntimeException("Not enough money on bank account ( Иди работай бомжара)");
         }
         if (credit.getDebt().equals(0.0)) {
             credit.setStatus(CreditStatus.PAID);
-        } else {
-            credit.setNextPayDate(credit.getNextPayDate().plusMonths(1));
+        } else  {
+            if(credit.getPaymentType()!=PaymentType.AUTO){
+                credit.setNextPayDate(credit.getNextPayDate().plusMinutes(1));
+            }
         }
         creditRepository.save(credit);
         accountRepository.save(account);
@@ -98,6 +108,11 @@ public class CreditService {
 
     public List<Credit> getUsersCredits(Long userId) {
         return creditRepository.findAllByUserIdOrderByDateDesc(userId);
+    }
+
+    public void deleteCredit(Long creditId){
+        creditRepository.deleteById(creditId);
+        jobService.deleteJob(creditId);
     }
 
 

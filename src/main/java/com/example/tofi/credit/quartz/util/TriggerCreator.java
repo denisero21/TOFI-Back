@@ -20,16 +20,18 @@ public class TriggerCreator {
 
     public Trigger createTrigger(String jobName, Credit credit) {
         Date date = convertToDate(credit.getNextPayDate());
+        Date endDate = convertToDate(credit.getNextPayDate().plusMinutes(credit.getTerm().getTerm()));
         int interval = 1;
-        DateBuilder.IntervalUnit unit = DateBuilder.IntervalUnit.MONTH;
-        return createTrigger(jobName, date, interval, unit);
+        DateBuilder.IntervalUnit unit = DateBuilder.IntervalUnit.MINUTE;
+        return createTrigger(jobName, date, endDate, interval, unit);
     }
 
-    private Trigger createTrigger(String jobName, Date date, int interval, DateBuilder.IntervalUnit unit) {
+    private Trigger createTrigger(String jobName, Date date, Date endDate, int interval, DateBuilder.IntervalUnit unit) {
         ScheduleBuilder<CalendarIntervalTrigger> scheduleBuilder = CalendarIntervalScheduleBuilder.calendarIntervalSchedule().withInterval(interval, unit);
         return TriggerBuilder.newTrigger()
                 .withIdentity(jobName, "credit-trigger")
                 .startAt(date)
+                .endAt(endDate)
                 .withSchedule(scheduleBuilder)
                 .build();
     }

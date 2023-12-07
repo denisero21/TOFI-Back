@@ -2,7 +2,6 @@ package com.example.tofi.common.persistance.domain.creditservice.dto;
 
 import com.example.tofi.common.persistance.domain.creditservice.CreditTerm;
 import com.example.tofi.common.persistance.domain.creditservice.PaymentType;
-import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -30,4 +29,6 @@ public class CreateCreditDto {
 
     @JsonProperty("is_notification_enabled")
     Boolean isNotificationEnabled;
+
+    String email;
 }

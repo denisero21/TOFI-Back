@@ -18,5 +18,7 @@ public class CreditPaymentJobInfo {
     private String jobGroup;
     private String jobStatus;
     private String jobClass;
+
+    @Column(name = "credit_payment_id")
     private Long creditId;
 }

@@ -45,14 +45,30 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6
 ###
 POST http://localhost:8080/api/users/4/credit
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsX25hbWUiOiJKb2huaGhoaCBEb2UiLCJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNMSUVOVF9QUklWSUxFR0UifV0sInR3b19mYWN0b3IiOmZhbHNlLCJzdWIiOiJLUklWIiwiaXNzIjoiS1JJVkJBTksiLCJleHAiOjE3MDE5NzQ1MTB9.XGGKgvQ2o9c9_E1NfSrpTv-U4oBygKIhTjaqF-9gymKJAJJTZA6PbAXcKEnPR-SyprPLaGznke9itMlyyWsynA
 
 {
   "account_id": 1,
   "term": "MONTH_3",
-  "payment_type": "MANUAL",
+  "payment_type": "AUTO",
   "amount_given": 5000.0,
-  "is_notification_enabled": false
+  "is_notification_enabled": false,
+  "email": "oleg.krivenkov.spam@gmail.com"
 }
+
+###
+POST http://localhost:8080/api/users/4/credit/23/pay
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsX25hbWUiOiJKb2huaGhoaCBEb2UiLCJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNMSUVOVF9QUklWSUxFR0UifV0sInR3b19mYWN0b3IiOmZhbHNlLCJzdWIiOiJLUklWIiwiaXNzIjoiS1JJVkJBTksiLCJleHAiOjE3MDE5Nzk5Nzh9.SXCJGFpo-13XaMhCjXWFONJe8OPBVvQps6YgVV-6QANooxflP4QItnPtYFBhckcq89HljJr0KC3j2eTgBL1yaA
+
+{
+ "sum_to_pay": 1694.52
+}
+
+
+
+###
+DELETE localhost:8080/api/users/4/credit/22
 
 ###
 POST http://localhost:8080/api/users/2/accounts
