@@ -1,0 +1,4 @@
+com\example\tofi\credit\service\CreditServiceTest.class
+com\example\tofi\deposit\service\DepositServiceTest.class
+com\example\tofi\user\service\UserServiceTest.class
+com\example\tofi\common\service\CountServiceTest.class

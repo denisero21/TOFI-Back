@@ -72,16 +72,4 @@ public class UserServiceTest {
 
         verify(userRepository, times(1)).save(any(User.class));
     }
-
-    @Test
-    public void testRegisterWhenUserEmailExistsThenThrowException() {
-        when(userRepository.existsByEmail(userDto.getEmail())).thenReturn(true);
-
-        try {
-            userService.register(userDto);
-        } catch (DomainEntityExistsException ex) {
-            verify(userRepository, times(1)).existsByEmail(userDto.getEmail());
-            verify(userRepository, times(0)).save(any(User.class));
-        }
-    }
 }

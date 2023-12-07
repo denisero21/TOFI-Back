@@ -81,32 +81,10 @@ public class SecurityConfig {
                                         .requestMatchers("/api/auth/login", "/api/auth/logout","api/auth/register","api/**")
                                         .permitAll()
 
-                                        // TODO: 13.09.2023 for halik bank payment page
-                                        .requestMatchers("/prepare_payment", "/api/bank_terminal_id", "/api/bank_terminal")
-                                        .permitAll()
-
                                         .requestMatchers("/api/send_email/**")
                                         .permitAll()
 
                                         .requestMatchers("/api/reset_password/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/banks/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/reports/paylink")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/virtual_pos/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/terminals")
-                                        .permitAll()
-
-                                        .requestMatchers("/reference/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/security/**")
                                         .permitAll()
 
                                         .requestMatchers(
@@ -118,35 +96,9 @@ public class SecurityConfig {
                                         .requestMatchers("/api/agents/**", "/api/users/**", "/roles/**")
                                         .permitAll()
 
-                                        .requestMatchers("/api/terminals/**")
+                                        .requestMatchers("/**")
                                         .permitAll()
 
-                                        .requestMatchers("/api/reports/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/registers/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/refunds/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/notifications/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/cards/**", "/saved_cards/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/payments/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/commission_settings/**")
-                                        .permitAll()
-
-                                        .requestMatchers("/api/rec_payment")
-                                        .permitAll()
-
-                                        .anyRequest()
-                                        .authenticated()
                                         .and()
                                         .exceptionHandling(exc -> exc
                                                 .accessDeniedHandler(qpAccessDeniedHandler)

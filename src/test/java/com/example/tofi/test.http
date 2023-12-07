@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/auth/logi
+POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6
 ###
 POST http://localhost:8080/api/users/4/credit
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsX25hbWUiOiJKb2huaGhoaCBEb2UiLCJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNMSUVOVF9QUklWSUxFR0UifV0sInR3b19mYWN0b3IiOmZhbHNlLCJzdWIiOiJLUklWIiwiaXNzIjoiS1JJVkJBTksiLCJleHAiOjE3MDE5NzQ1MTB9.XGGKgvQ2o9c9_E1NfSrpTv-U4oBygKIhTjaqF-9gymKJAJJTZA6PbAXcKEnPR-SyprPLaGznke9itMlyyWsynA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsX25hbWUiOiJKb2huaGhoaCBEb2UiLCJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6Ik9QRVJBVE9SX1BSSVZJTEVHRSJ9XSwidHdvX2ZhY3RvciI6ZmFsc2UsInN1YiI6IktSSVYiLCJpc3MiOiJLUklWQkFOSyIsImV4cCI6MTcwMjAzNzUyM30.Snl7qU1FoJXLzYv_PWdl9MYr1QhPgH0fQvrEA1V1zt_wk_7H62NfOadHAEpTzEHIC8zKLDitxcwyDxlgum_6FQ
 
 {
   "account_id": 1,
@@ -68,7 +68,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsX25hbWUiOiJKb2huaGhoaCBEb2UiL
 
 
 ###
-DELETE localhost:8080/api/users/4/credit/22
+DELETE localhost:8080/api/users/4/credit/27
 
 ###
 POST http://localhost:8080/api/users/2/accounts
