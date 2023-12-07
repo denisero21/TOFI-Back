@@ -24,7 +24,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping(
-            value = "api/users/{user_id}/accounts",
+            value = "/users/{user_id}/accounts",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Create account")
     @ApiResponses(value = {
@@ -39,7 +39,7 @@ public class AccountController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/accounts"
+            value = "/users/{user_id}/accounts"
     )
     @Operation(summary = "Get list of accounts")
     @ApiResponses(value = {
@@ -52,7 +52,7 @@ public class AccountController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/accounts/{account_id}/add_money")
+            value = "/users/{user_id}/accounts/{account_id}/add_money")
     @Operation(summary = "Temki zhestkie")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Kalyan pokuren"),
@@ -63,7 +63,7 @@ public class AccountController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/accounts/{account_id}/no_money")
+            value = "/users/{user_id}/accounts/{account_id}/no_money")
     @Operation(summary = "Make ur account have 2.15 dollars")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Bonuska ne vipala"),
@@ -74,7 +74,7 @@ public class AccountController {
     }
 
     @PostMapping(
-            value = "api/users/{user_id}/accounts/transfer",
+            value = "/users/{user_id}/accounts/transfer",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Make transfer")
     @ApiResponses(value = {
@@ -88,7 +88,7 @@ public class AccountController {
     }
 
     @PatchMapping(
-            value = "api/users/{user_id}/account/{account_id}/status")
+            value = "/users/{user_id}/account/{account_id}/status")
     @Operation(summary = "Change account status")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Status changed"),
@@ -101,7 +101,7 @@ public class AccountController {
     }
 
     @PutMapping(
-            value = "api/users/{user_id}/account/{account_id}")
+            value = "/users/{user_id}/account/{account_id}")
     @Operation(summary = "Change account")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Account changed"),
