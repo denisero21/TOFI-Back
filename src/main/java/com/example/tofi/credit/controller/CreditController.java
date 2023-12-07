@@ -25,7 +25,7 @@ public class CreditController {
     private final CreditService creditService;
 
     @PostMapping(
-            value = "api/users/{user_id}/credit",
+            value = "/users/{user_id}/credit",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Create credit")
     @ApiResponses(value = {
@@ -40,7 +40,7 @@ public class CreditController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/credit")
+            value = "/users/{user_id}/credit")
     @Operation(summary = "Get list of credits")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns list of credits"),
@@ -52,7 +52,7 @@ public class CreditController {
     }
 
     @DeleteMapping(
-            value = "api/users/{user_id}/credit/{credit_id}")
+            value = "/users/{user_id}/credit/{credit_id}")
     @Operation(summary = "Delete credit")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Delete credit"),
@@ -64,7 +64,7 @@ public class CreditController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/credit/{credit_id}")
+            value = "/users/{user_id}/credit/{credit_id}")
     @Operation(summary = "Get credit payment info")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns credit payment info"),
@@ -76,7 +76,7 @@ public class CreditController {
     }
 
     @PostMapping(
-            value = "api/users/{user_id}/credit/{credit_id}/pay",
+            value = "/users/{user_id}/credit/{credit_id}/pay",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Pay for the credit")
     @ApiResponses(value = {
@@ -90,7 +90,7 @@ public class CreditController {
     }
 
     @PatchMapping(
-            value = "api/users/{user_id}/credit/{credit_id}/status")
+            value = "/users/{user_id}/credit/{credit_id}/status")
     @Operation(summary = "Change credit status")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Status changed"),

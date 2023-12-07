@@ -19,7 +19,7 @@ public class UserController {
 
     private final UserService userService;
     @PostMapping(
-            value = "api/auth/register",
+            value = "/auth/register",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Add new User")
     @ApiResponses(value = {

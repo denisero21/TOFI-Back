@@ -21,7 +21,7 @@ public class DepositController {
     private final DepositService depositService;
 
     @PostMapping(
-            value = "api/users/{user_id}/deposit",
+            value = "/users/{user_id}/deposit",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Create deposit")
     @ApiResponses(value = {
@@ -36,7 +36,7 @@ public class DepositController {
     }
 
     @PostMapping(
-            value = "api/users/{user_id}/deposit/{deposit_id}/close"
+            value = "/users/{user_id}/deposit/{deposit_id}/close"
     )
     @Operation(summary = "Close deposit")
 //    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
@@ -49,7 +49,7 @@ public class DepositController {
     }
 
     @GetMapping(
-            value = "api/users/{user_id}/deposit")
+            value = "/users/{user_id}/deposit")
     @Operation(summary = "Get list of deposits")
 //    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
     @ApiResponses(value = {

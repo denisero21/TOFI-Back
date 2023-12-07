@@ -78,7 +78,7 @@ public class SecurityConfig {
                                                 "/service/payment_page")
                                         .permitAll()
 
-                                        .requestMatchers("/api/auth/login", "/api/auth/logout","api/auth/register","api/**")
+                                        .requestMatchers("/auth/login", "/auth/logout","/auth/register","api/**")
                                         .permitAll()
 
                                         .requestMatchers("/api/send_email/**")
@@ -88,9 +88,9 @@ public class SecurityConfig {
                                         .permitAll()
 
                                         .requestMatchers(
-                                                "/api/auth/confirm_otp",
-                                                "/api/auth/refresh_otp",
-                                                "/api/auth/validateToken")
+                                                "/auth/confirm_otp",
+                                                "/auth/refresh_otp",
+                                                "/auth/validateToken")
                                         .permitAll()
 
                                         .requestMatchers("/api/agents/**", "/api/users/**", "/roles/**")
