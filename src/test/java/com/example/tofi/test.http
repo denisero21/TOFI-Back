@@ -15,9 +15,13 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-"login": "user@user.com",
-"password": "user"
+"login": "oleg.krivenkov.spam@gmail.com",
+"password": "oleg"
 }
+
+###
+GET http://localhost:8080/api/users/19/accounts
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsX25hbWUiOiJKb2huaGhoaCBEb2UiLCJ1c2VyX2lkIjo0LCJ0eXAiOiJKV1QiLCJlbWFpbCI6Im9sZWcua3JpdmVua292LnNwYW1AZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNMSUVOVF9QUklWSUxFR0UifV0sInR3b19mYWN0b3IiOmZhbHNlLCJzdWIiOiJLUklWIiwiaXNzIjoiS1JJVkJBTksiLCJleHAiOjE3MDE5NTE4NjR9.2FwO4NKTZv_Att_WQESV5NsBi562O4PUmVHJCobmLMS5waxJhTNr5SS0bstL1Dvee0ZqqL8pOHFog_aPriQxcA
 
 ###
 POST http://localhost:8080/api/auth/confirm_otp
