@@ -33,6 +33,12 @@ public class DepositService {
         Account account = accountRepository
                 .findById(depositDto.getAccountId())
                 .orElseThrow(()-> new RuntimeException("Account not found"));
+        BeanUtils.copyProperties(depositDto, deposit);
+        deposit.setUserId(userId);
+        deposit.setDate(LocalDateTime.now());
+        deposit.setEndDate(LocalDateTime.now().plusMonths(depositDto.getTerm().getTerm()));
+        deposit.setStatus(DepositStatus.ONCOMPENSATION);
+        deposit.setTerm(depositDto.getTerm());
         if(account.getBalance() < depositDto.getAmount()){
             throw new RuntimeException("Not enough money on balance");
         }
@@ -44,12 +50,6 @@ public class DepositService {
                 && deposit.getType().equals(DepositType.IRREVOCABLE)){
             throw new RuntimeException("It's impossible to open irrevocable perpetual deposit ");
         }
-        BeanUtils.copyProperties(depositDto, deposit);
-        deposit.setUserId(userId);
-        deposit.setDate(LocalDateTime.now());
-        deposit.setEndDate(LocalDateTime.now().plusMonths(depositDto.getTerm().getTerm()));
-        deposit.setStatus(DepositStatus.ONCOMPENSATION);
-        deposit.setTerm(depositDto.getTerm());
         depositRepository.save(deposit);
     }
 
