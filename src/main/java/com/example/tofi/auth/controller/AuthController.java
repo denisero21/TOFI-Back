@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(
-        value = "/api/auth",
+        value = "/auth",
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthController {
 
@@ -35,7 +35,6 @@ public class AuthController {
                     "a temporary token and sends an SMS code to the phone number stored in the database."),
             @ApiResponse(responseCode = "401", description = "Credentials entered incorrectly.")
     })
-    @CrossOrigin("https://tofi-bank.netlify.app")
     @PostMapping(
             value = "/login",
             consumes = MediaType.APPLICATION_JSON_VALUE)
