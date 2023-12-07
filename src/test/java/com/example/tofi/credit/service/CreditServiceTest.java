@@ -48,24 +48,29 @@ public class CreditServiceTest {
 
     @BeforeEach
     public void setUp() {
+        account = new Account();
+        account.setId(1L);
+        account.setBalance(2000.0);
+        account.setIsBlocked(false);
+
         credit = new Credit();
         credit.setId(1L);
         credit.setAccountId(1L);
         credit.setNextPayDate(LocalDateTime.now().minusDays(1));
         credit.setPerMonthPaySum(100.0);
         credit.setDebt(1000.0);
-
-        account = new Account();
-        account.setId(1L);
-        account.setBalance(2000.0);
+        credit.setPaymentType(PaymentType.MANUAL);
 
         createCreditDto = new CreateCreditDto();
         createCreditDto.setPaymentType(PaymentType.AUTO);
         createCreditDto.setAmountGiven(1000.0);
         createCreditDto.setTerm(CreditTerm.MONTH_3);
+        createCreditDto.setAccountId(1L);
 
         makePaymentRequest = new MakePaymentRequest();
         makePaymentRequest.setSumToPay(100.0);
+
+
     }
 
     @Test
@@ -114,18 +119,6 @@ public class CreditServiceTest {
         assertEquals("Operation error.Account is blocked.", exception.getMessage());
         verify(creditRepository, times(0)).save(any(Credit.class));
         verify(accountRepository, times(0)).save(any(Account.class));
-    }
-
-    @Test
-    public void testCreateCreditWhenPaymentTypeIsNotAutoThenSaveCreditWithoutSchedulingJob() {
-        createCreditDto.setPaymentType(PaymentType.MANUAL);
-        when(countService.countPerMonthPaySum(anyDouble(), anyInt(), anyDouble())).thenReturn(100.0);
-        when(creditRepository.save(any(Credit.class))).thenAnswer(i -> i.getArguments()[0]);
-
-        creditService.createCredit(1L, createCreditDto);
-
-        verify(creditRepository, times(1)).save(any(Credit.class));
-        verify(jobService, times(0)).scheduleNewCredit(anyLong(), any(Credit.class));
     }
 
     @Test

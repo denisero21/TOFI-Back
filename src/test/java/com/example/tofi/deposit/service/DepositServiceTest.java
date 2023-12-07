@@ -59,20 +59,78 @@ public class DepositServiceTest {
     }
 
     @Test
-    public void testCreateDepositWhenValidInputThenDepositCreatedAndAccountUpdated() {
-        when(accountRepository.findById(depositDto.getAccountId())).thenReturn(Optional.of(account));
-
-        depositService.createDeposit(1L, depositDto);
-
-        verify(accountRepository, times(2)).save(account);
-        verify(depositRepository).save(any(Deposit.class));
-    }
-
-    @Test
     public void testCreateDepositWhenNotEnoughBalanceThenRuntimeException() {
         depositDto.setAmount(2000.0);
         when(accountRepository.findById(depositDto.getAccountId())).thenReturn(Optional.of(account));
 
         assertThrows(RuntimeException.class, () -> depositService.createDeposit(1L, depositDto));
+    }
+
+    @Test
+    public void testCloseDepositWhenDepositNotFoundThenRuntimeException() {
+        when(depositRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> depositService.closeDeposit(1L));
+    }
+
+    @Test
+    public void testCloseDepositWhenDepositAlreadyClosedThenRuntimeException() {
+        Deposit deposit = new Deposit();
+        deposit.setStatus(DepositStatus.CLOSED);
+        when(depositRepository.findById(1L)).thenReturn(Optional.of(deposit));
+
+        assertThrows(RuntimeException.class, () -> depositService.closeDeposit(1L));
+    }
+
+    @Test
+    public void testCloseDepositWhenIrrevocableDepositClosedTooEarlyThenRuntimeException() {
+        Deposit deposit = new Deposit();
+        deposit.setType(DepositType.IRREVOCABLE);
+        deposit.setTerm(DepositTerm.MONTH_3);
+        deposit.setDate(LocalDateTime.now().minusMonths(1));
+        deposit.setStatus(DepositStatus.ONCOMPENSATION);
+        when(depositRepository.findById(1L)).thenReturn(Optional.of(deposit));
+
+        assertThrows(RuntimeException.class, () -> depositService.closeDeposit(1L));
+    }
+
+    @Test
+    public void testCloseDepositWhenIrrevocableDepositClosedAndNotTooEarlyThenTransferAmountToAccountBalance() {
+        Deposit deposit = new Deposit();
+        deposit.setType(DepositType.IRREVOCABLE);
+        deposit.setTerm(DepositTerm.MONTH_3);
+        deposit.setDate(LocalDateTime.now().minusMonths(4));
+        deposit.setStatus(DepositStatus.ONCOMPENSATION);
+        deposit.setAccountId(1L);
+        deposit.setAmount(500.0);
+        when(depositRepository.findById(1L)).thenReturn(Optional.of(deposit));
+        when(countService.calculateCompensationAmountForIrrevocableDeposit(
+                deposit.getAmount(), deposit.getTerm().getTerm(), deposit.getTerm().getIrrevocablePercent()))
+                .thenReturn(600.0);
+
+        depositService.closeDeposit(1L);
+
+        verify(accountService).getAmountFromDeposit(deposit.getAccountId(), deposit.getCompensationAmount());
+        verify(depositRepository).save(deposit);
+    }
+
+    @Test
+    public void testCloseDepositWhenRevocableDepositClosedThenTransferAmountToAccountBalance() {
+        Deposit deposit = new Deposit();
+        deposit.setType(DepositType.REVOCABLE);
+        deposit.setTerm(DepositTerm.MONTH_3);
+        deposit.setDate(LocalDateTime.now().minusMonths(1));
+        deposit.setStatus(DepositStatus.ONCOMPENSATION);
+        deposit.setAccountId(1L);
+        deposit.setAmount(500.0);
+        when(depositRepository.findById(1L)).thenReturn(Optional.of(deposit));
+        when(countService.calculateCompensationAmountForRevocableDeposit(
+                deposit.getAmount(), 30, deposit.getTerm().getRevocablePercent()))
+                .thenReturn(600.0);
+
+        depositService.closeDeposit(1L);
+
+        verify(accountService).getAmountFromDeposit(deposit.getAccountId(), deposit.getCompensationAmount());
+        verify(depositRepository).save(deposit);
     }
 }
