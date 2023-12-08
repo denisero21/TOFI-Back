@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CryptoCurrencyController {
     private final CryptoCurrencyService cryptoCurrencyService;
     @GetMapping(
-            value = "api/crypto",
+            value = "/crypto",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Get list of cryptocurrencies exchange rates")
 //    @PreAuthorize("hasAuthority('CLIENT_PRIVILEGE')")
