@@ -66,7 +66,7 @@ public class CreditJob extends QuartzJobBean {
             emailService.sendSimpleMessage("billingsystemgroup@gmail.com",
                     credit.getEmailForNotification(),
                     "Credit in TOFIBANK",
-                    "На вашем счет недостаточно средств, во изюежании блокировки, пополните баланс счета и проведите платеж по кредиту вручную");
+                    "На вашем счет недостаточно средств, во избежании блокировки, пополните баланс счета и проведите платеж по кредиту вручную");
             credit.setIsNeedManualPayment(true);
         }
         if (credit.getDebt().equals(0.0)) {
