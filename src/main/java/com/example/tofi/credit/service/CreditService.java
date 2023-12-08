@@ -91,7 +91,7 @@ public class CreditService {
             // TODO: 27.11.2023 чет надо сделать
             throw new RuntimeException("Not enough money on bank account ( Иди работай бомжара)");
         }
-        if(credit.getDebt()>=0.02 && credit.getDebt()<=-0.02){
+        if(credit.getDebt()<=0.02 && credit.getDebt()>=-0.02){
             credit.setDebt(0.0);
         }
         if (credit.getDebt().equals(0.0)) {
