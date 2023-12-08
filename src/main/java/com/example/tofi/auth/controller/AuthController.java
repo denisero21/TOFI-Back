@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(
         value = "/auth",
         produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin
 public class AuthController {
 
     private final AuthService authService;
