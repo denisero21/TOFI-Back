@@ -107,6 +107,9 @@ CREATE TABLE credit
     is_notification_enabled BOOLEAN,
     payment_type            SMALLINT,
     per_month_pay_sum       DECIMAL(15, 2)          NOT NULL,
+    penya                   DECIMAL(15, 2),
+    is_need_manual_payment  BOOLEAN,
+    email_for_notification  VARCHAR(300),
     FOREIGN KEY (user_id) REFERENCES user_ (id),
     FOREIGN KEY (account_id) REFERENCES account (id)
 );
@@ -123,6 +126,7 @@ CREATE TABLE deposit
     compensation_amount      DECIMAL(15, 2)          NOT NULL,
     status                   SMALLINT,
     type                     SMALLINT,
+    end_date                 TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user_ (id),
     FOREIGN KEY (account_id) REFERENCES account (id)
 );
