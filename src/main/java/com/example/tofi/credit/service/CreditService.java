@@ -58,6 +58,9 @@ public class CreditService {
 
     public CreditPaymentInfoDto getCreditPaymentInfo(Long id) {
         Credit credit = creditRepository.findById(id).orElseThrow(RuntimeException::new);
+        if(CreditStatus.PAID.equals(credit.getStatus())){
+            throw new RuntimeException("Credit is already paid");
+        }
         Long days = ChronoUnit.DAYS.between(credit.getNextPayDate(), LocalDateTime.now());
         Double penya = countService.calculatePenalty(credit.getPerMonthPaySum(), days);
         CreditPaymentInfoDto creditPaymentInfoDto = new CreditPaymentInfoDto();
@@ -66,6 +69,9 @@ public class CreditService {
         creditPaymentInfoDto.setPenya(penya);
         creditPaymentInfoDto.setCreditName(credit.getName());
         creditPaymentInfoDto.setDebtAfterPayment(BigDecimal.valueOf(credit.getDebt()).subtract(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
+        if(creditPaymentInfoDto.getDebtAfterPayment()<=0.02 && creditPaymentInfoDto.getDebtAfterPayment()>=-0.02){
+            creditPaymentInfoDto.setDebtAfterPayment(0.0);
+        }
         creditPaymentInfoDto.setSumToPay(BigDecimal.valueOf(penya).add(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
         return creditPaymentInfoDto;
     }
