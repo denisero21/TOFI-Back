@@ -65,13 +65,16 @@ public class CreditService {
         creditPaymentInfoDto.setSumPerMonth(credit.getPerMonthPaySum());
         creditPaymentInfoDto.setPenya(penya);
         creditPaymentInfoDto.setCreditName(credit.getName());
-        creditPaymentInfoDto.setDebtAfterPayment(credit.getDebt() - credit.getPerMonthPaySum());
+        creditPaymentInfoDto.setDebtAfterPayment(BigDecimal.valueOf(credit.getDebt()).subtract(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
         creditPaymentInfoDto.setSumToPay(BigDecimal.valueOf(penya).add(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
         return creditPaymentInfoDto;
     }
 
     public void makePaymentForCredit(Long id, MakePaymentRequest makePaymentRequest) {
         Credit credit = creditRepository.findById(id).orElseThrow(RuntimeException::new);
+        if(CreditStatus.PAID.equals(credit.getStatus())){
+            throw new RuntimeException("Credit is already paid");
+        }
         if (credit.getNextPayDate().toLocalDate().isAfter(LocalDate.now()))
             throw new RuntimeException("Too early to pay");
         Account account = accountRepository.findById(credit.getAccountId()).orElseThrow(()->new RuntimeException("Account not found"));
@@ -80,13 +83,16 @@ public class CreditService {
         }
         if (account.getBalance() >= makePaymentRequest.getSumToPay()) {
             account.setBalance(account.getBalance() - makePaymentRequest.getSumToPay());
-            credit.setDebt(credit.getDebt() - credit.getPerMonthPaySum());
+            credit.setDebt(BigDecimal.valueOf(credit.getDebt()).subtract(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
             if(credit.getPaymentType().equals(PaymentType.AUTO)){
                 credit.setIsNeedManualPayment(false);
             }
         } else {
             // TODO: 27.11.2023 чет надо сделать
             throw new RuntimeException("Not enough money on bank account ( Иди работай бомжара)");
+        }
+        if(credit.getDebt()>=0.02 || credit.getDebt()<=-0.02){
+            credit.setDebt(0.0);
         }
         if (credit.getDebt().equals(0.0)) {
             credit.setStatus(CreditStatus.PAID);

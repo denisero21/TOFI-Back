@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 
 
 @Component
@@ -30,7 +31,6 @@ public class CreditJob extends QuartzJobBean {
         CreditRepository creditRepository = applicationContext.getBean(CreditRepository.class);
         AccountRepository accountRepository = applicationContext.getBean(AccountRepository.class);
         EmailService emailService = applicationContext.getBean(EmailService.class);
-        JavaMailSender emailSender = applicationContext.getBean(JavaMailSender.class);
         Long creditId =(Long) context.getMergedJobDataMap().get("creditId");
         Credit credit = creditRepository
                 .findById(creditId)
@@ -55,8 +55,8 @@ public class CreditJob extends QuartzJobBean {
             account.setIsBlocked(true);
         }
         if (account.getBalance() >= credit.getPerMonthPaySum()) {
-            account.setBalance(account.getBalance() - credit.getPerMonthPaySum());
-            credit.setDebt(credit.getDebt() - credit.getPerMonthPaySum());
+            account.setBalance(BigDecimal.valueOf(account.getBalance()).subtract(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
+            credit.setDebt(BigDecimal.valueOf(credit.getDebt()).subtract(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
         } else {
             emailService.sendSimpleMessage("billingsystemgroup@gmail.com",
                     credit.getEmailForNotification(),
