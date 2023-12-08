@@ -1,9 +1,9 @@
-POST http://localhost:8080/api/auth/register
+POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
   "full_name": "Johnhhhh Doe",
-  "email": "oleg.krivenkov.spam@gmail.com",
+  "email": "oleg.krivenkov.2002@gmail.com",
   "phone_number": "123-456-7890",
   "is_enabled": true,
   "two_factor_auth": true,
