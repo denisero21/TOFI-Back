@@ -33,6 +33,9 @@ public class DepositService {
         Account account = accountRepository
                 .findById(depositDto.getAccountId())
                 .orElseThrow(()-> new RuntimeException("Account not found"));
+        if(account.getIsBlocked()){
+            throw new RuntimeException("Account is blocked");
+        }
         BeanUtils.copyProperties(depositDto, deposit);
         deposit.setUserId(userId);
         deposit.setDate(LocalDateTime.now());

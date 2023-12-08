@@ -9,7 +9,6 @@ import com.example.tofi.common.persistance.repository.CreditRepository;
 import org.quartz.JobExecutionContext;
 import org.quartz.SchedulerException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
@@ -39,12 +38,15 @@ public class CreditJob extends QuartzJobBean {
                 .findById(credit.getAccountId())
                 .orElseThrow(()->new RuntimeException("Account not found"));
         //Если счет заблочен, уведомляем пользователя и даем ему возможность еще раз заплатить
-        if (account.getIsBlocked()) {
+        if (account.getIsBlocked()){
             emailService.sendSimpleMessage("billingsystemgroup@gmail.com",
                     credit.getEmailForNotification(),
                     "Credit in TOFIBANK",
                     "Ваш счет заблокирован.Обратитесь в банк для разблокировки счета и проведите платеж по кредиту вручную" );
             credit.setIsNeedManualPayment(true);
+            accountRepository.save(account);
+            creditRepository.save(credit);
+            return;
         }
         //Проверка оплатил ли пользователь кредит вручную после неудачной прошлой автооплаты
         else if(credit.getIsNeedManualPayment()){
@@ -53,6 +55,9 @@ public class CreditJob extends QuartzJobBean {
                     "Credit in TOFIBANK",
                     "Ваш счет заблокирован из-за неоплаты прошлого платежа.");
             account.setIsBlocked(true);
+            accountRepository.save(account);
+            creditRepository.save(credit);
+            return;
         }
         if (account.getBalance() >= credit.getPerMonthPaySum()) {
             account.setBalance(BigDecimal.valueOf(account.getBalance()).subtract(BigDecimal.valueOf(credit.getPerMonthPaySum())).doubleValue());
@@ -69,7 +74,6 @@ public class CreditJob extends QuartzJobBean {
         } else {
             credit.setNextPayDate(credit.getNextPayDate().plusMinutes(1));
         }
-
         accountRepository.save(account);
         creditRepository.save(credit);
         System.out.println("Next fire time : " + context.getNextFireTime());
